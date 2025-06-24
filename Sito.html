@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>pb_3dparts</title>
+
+    <!-- Google Font Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Verdana', sans-serif;
+            background: linear-gradient(to right, #f0f2f0, #000c40);
+            color: black;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+            header img {
+                width: 100px;
+            }
+
+            header h1 {
+                font-family: 'Orbitron', sans-serif;
+                font-size: 48px;
+                color: #000;
+            }
+
+        /* Stili per il menu hamburger */
+        .menu-btn {
+            position: absolute;
+            top: 40px;
+            right: 30px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+            .menu-btn span {
+                display: block;
+                width: 30px;
+                height: 3px;
+                background: #000;
+                margin: 6px 0;
+                transition: 0.4s;
+            }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(135deg, #5592d9 0%, #2a5a9a 100%);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: 0.4s;
+            padding-top: 80px;
+        }
+
+            .menu.active {
+                right: 0;
+            }
+
+            .menu ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .menu li {
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .menu a {
+                text-decoration: none;
+                color: white;
+                font-size: 16px;
+                display: block;
+                transition: 0.3s;
+            }
+
+                .menu a:hover {
+                    color: #e0e0e0;
+                    padding-left: 5px;
+                }
+
+        /* Animazione per il pulsante hamburger */
+        .menu-btn.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+            background: white;
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+            background: white;
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .intro {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 280px;
+            border-radius: 15px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            .card img {
+                max-width: 100%;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+
+            .card p {
+                font-size: 16px;
+            }
+
+        .clickable {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            margin-top: 40px;
+        }
+
+            footer a {
+                color: black;
+                font-size: 14px;
+                text-decoration: none;
+            }
+
+            footer img {
+                width: 40px;
+                vertical-align: middle;
+            }
+
+        @media screen and (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            .menu-btn {
+                top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="img/PB_logo.png" alt="Logo PB">
+        <h1><b>pb_3dparts</b></h1>
+
+        <!-- Pulsante hamburger menu -->
+        <div class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Menu laterale -->
+    <div class="menu">
+        <ul>
+            <li><a href="peg.html">Peg / Tamponi moto</a></li>
+            <li><a href="fluidi.html">Recupero fluidi</a></li>
+            <li><a href="portachiavi.html">Portachiavi</a></li>
+            <li><a href="#coming-soon">Coming soon</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="intro">
+            Personalizza la tua moto con gli accessori che preferisci
+        </div>
+
+        <div class="card-container">
+
+            <!-- Card Peg/Tamponi moto -->
+            <a href="peg.html" class="clickable" id="peg">
+                <div class="card">
+                    <h2>Peg / Tamponi moto</h2>
+                    <img src="img/KTM_ZIGRINATO.png" height="160" alt="Tamponi moto">
+                    <p>Scegli il prodotto più adatto a te e alla tua moto.</p>
+                </div>
+            </a>
+
+            <!-- Card Recupero fluidi -->
+            <a href="fluidi.html" class="clickable" id="fluidi">
+                <div class="card">
+                    <h2>Recupero fluidi</h2>
+                    <img src="img/Recupero fluidi KTM.png" height="160" alt="Recupero fluidi">
+                    <p>Pratico serbatoio per il recupero dei fluidi della tua moto.</p>
+                </div>
+            </a>
+
+            <!-- Card Portachiavi -->
+            <a href="portachiavi.html" class="clickable" id="portachiavi">
+                <div class="card">
+                    <h2>Portachiavi</h2>
+                    <img src="img/KTM_TRIANGOLARE.png" height="160" alt="Portachiavi moto">
+                    <p>Design personalizzato per un tocco unico alle tue chiavi.</p>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="card" style="margin: 50px auto;" id="coming-soon">
+            <h2>Coming soon!</h2>
+            <p>Nuovi prodotti in arrivo. Resta aggiornato!</p>
+        </div>
+    </div>
+
+    <footer>
+        <a href="https://www.instagram.com/pb_3dparts/">
+            <img src="img/Insta.png" alt="Instagram">
+            <span>pb_3dparts</span>
+        </a>
+    </footer>
+
+    <script>
+        // Script per aprire/chiudere il menu
+        const menuBtn = document.querySelector('.menu-btn');
+        const menu = document.querySelector('.menu');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            menu.classList.toggle('active');
+        });
+
+        // Chiudi il menu quando si clicca su un link
+        const menuLinks = document.querySelectorAll('.menu a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                menu.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
