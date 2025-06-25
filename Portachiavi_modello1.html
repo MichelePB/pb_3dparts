@@ -61,6 +61,12 @@
             max-width: 100%;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .product-image img:hover {
+            transform: scale(1.02);
         }
 
         .product-info {
@@ -99,9 +105,60 @@
             margin-right: 5px;
         }
 
+        /* Lightbox Stili */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            text-align: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .lightbox img {
+            max-height: 80vh;
+            max-width: 80vw;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .lightbox-caption {
+            color: white;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
         @media (max-width: 768px) {
             .product-container {
                 flex-direction: column;
+            }
+            
+            .lightbox img {
+                max-width: 95vw;
+                max-height: 80vh;
             }
         }
     </style>
@@ -120,21 +177,22 @@
         <!-- Contenuto prodotto -->
         <div class="product-container">
             <div class="product-image">
-                <img src="Portachiavi_copertina.png" alt="Portachiavi Modello 1">
+                <img src="Portachiavi_copertina.png" alt="Portachiavi Modello 1" 
+                     onclick="openLightbox('Portachiavi_copertina.png', 'Portachiavi Modello 1')">
                 <p class="product-description">Portachiavi in PLA con design personalizzato</p>
             </div>
             
             <div class="product-info">
                 <h3 class="product-title">Caratteristiche</h3>
                 <p class="product-description">
-                    Portachiavi realizzato in PLA , disponibile in vari colori. 
+                    Portachiavi realizzato in PLA, disponibile in vari colori. 
                     Design moderno per dare quel tocco in più alle chiavi della tua moto.<br>
                     Personalizzabile con logo o testo a richiesta.
                 </p>
                 
                 <h3 class="product-title">Specifiche tecniche</h3>
                 <ul class="product-description">
-                    <li>Materiale: PLA </li>
+                    <li>Materiale: PLA</li>
                     <li>Dimensioni: 2cm x 6cm</li>
                     <li>Peso: 15g</li>
                     <li>Colori disponibili: Nero, Rosso, Arancione, Bianco, Blu, Verde, Giallo</li>
@@ -144,5 +202,44 @@
             </div>
         </div>
     </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <script>
+        // Funzione per aprire il lightbox
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightbox.style.display = 'block';
+            lightboxImg.src = imageSrc;
+            lightboxCaption.textContent = caption;
+            
+            // Blocca lo scroll della pagina
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Funzione per chiudere il lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Chiudi il lightbox con il tasto ESC
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.key === "Escape") {
+                closeLightbox();
+            }
+        };
+    </script>
 </body>
 </html>
