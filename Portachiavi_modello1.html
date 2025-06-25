@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Portachiavi - pb_3dparts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Verdana', sans-serif;
+            background: linear-gradient(to right, #f0f2f0, #000c40);
+            color: black;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .header h2 {
+            color: #555;
+            font-weight: normal;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2a5a9a;
+            margin: 25px 0;
+        }
+
+        .back-arrow {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #2a5a9a;
+            font-weight: bold;
+        }
+
+        .back-arrow::before {
+            content: "←";
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Freccia per tornare indietro -->
+        <a href="Portachiavi.html" class="back-arrow">Torna ai prodotti</a>
+
+        <!-- Intestazione -->
+        <div class="header">
+            <h1>Portachiavi</h1>
+            <h2>Modello 1</h2>
+        </div>
+
+        <!-- Contenuto prodotto -->
+        <div class="product-container">
+            <div class="product-image">
+                <img src="Portachiavi_copertina.png" alt="Portachiavi Modello 1">
+                <p class="product-description">Portachiavi in PLA con design personalizzato</p>
+            </div>
+            
+            <div class="product-info">
+                <h3 class="product-title">Caratteristiche</h3>
+                <p class="product-description">
+                    Portachiavi realizzato in PLA , disponibile in vari colori. 
+                    Design moderno per dare quel tocco in più alle chiavi della tua moto.
+                    Personalizzabile con logo o testo a richiesta.
+                </p>
+                
+                <h3 class="product-title">Specifiche tecniche</h3>
+                <ul class="product-description">
+                    <li>Materiale: PLA </li>
+                    <li>Dimensioni: 2cm x 6cm</li>
+                    <li>Peso: 15g</li>
+                    <li>Colori disponibili: Nero, Rosso, Arancione, Bianco, Blu, Verde, Giallo</li>
+                </ul>
+                
+                <div class="product-price">€6,00</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
