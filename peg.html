@@ -2,13 +2,14 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Varianti Peg</title>
+    <title>Portachiavi</title>
     <style>
         body {
-            font-family: Verdana, sans-serif;
-            background: #f2f2f2;
-            padding: 30px;
-            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: 'Verdana', sans-serif;
+            background: linear-gradient(to right, #f0f2f0, #000c40);
+            color: black;
         }
 
         h1 {
@@ -16,23 +17,46 @@
             margin-bottom: 20px;
         }
 
+        .variant-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .variant-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
         .variant {
-            display: inline-block;
-            margin: 20px;
+            width: 250px;
             background: white;
-            padding: 15px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .variant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .variant img {
-            width: 200px;
+            width: 100%;
+            height: auto;
             border-radius: 8px;
+            margin-bottom: 15px;
         }
 
         .variant p {
-            margin-top: 10px;
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
         }
+
         .back-arrow {
             position: absolute;
             top: 40px;
@@ -59,54 +83,56 @@
             left: 10px;
             top: 8px;
         }
+
         header {
             text-align: center;
             padding: 30px 0;
             background-color: white;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
+            margin-bottom: 30px;
         }
-        header img {
-            width: 100px;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Verdana', sans-serif;
-            background: linear-gradient(to right, #f0f2f0, #000c40);
-            color: black;
+
+        h2 {
+            color: #555;
+            font-weight: normal;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
     </style>
-
 </head>
 <body>
     <header>
-        <img src="pb_logo.png" alt="Logo PB">
-        <br>
         <a href="Sito.html" class="back-arrow" aria-label="Torna alla pagina precedente"></a>
         <h1>Peg</h1>
+        <h2>Scegli il modello più adatto a te e personalizzalo con i colori e il testo che preferisci!</h2>
     </header>
-    <div class="variant-container">
-    <a href="PB_zigrinati.html" class="variant-link">
-        <div class="variant">
-            <img src="PB_ZIGRINATO.png" alt="PEG zigrinati">
-            <p>Texture zigrinata</p>
-        </div>
-    </a>
 
-    <a href="PEG_lisci.html" class="variant-link">
-        <div class="variant">
-            <img src="PB_LISCI.png" alt="PEG lisci">
-            <p>Texture liscia</p>
-        </div>
-    </a>
-    
-    <a href="PEG_personalizzati.html" class="variant-link">
-        <div class="variant">
-            <img src="PB_LISCIO2.png" alt="PEG PERSONALIZZATI">
-            <p>Personalizzati</p>
-        </div>
-    </a>
+    <div class="variant-container">
+        <!-- Modello 1 -->
+        <a href="PEG_lisci.html" class="variant-link">
+            <div class="variant">
+                <img src="PB_LISCI.png" alt="PEG lisci">
+                <p>Texture liscia</p>
+            </div>
+        </a>
+
+        <!-- Modello 2 -->
+        <a href="PEG_zigrinati.html" class="variant-link">
+            <div class="variant">
+                <img src="PB_ZIGRINATO.png" alt="PEG zigrinati">
+                <p>Texture zigrinata</p>
+            </div>
+        </a>
+
+        <!-- Modello 3 -->
+        <a href="PEG_personalizzati.html" class="variant-link">
+            <div class="variant">
+                <img src="PB_LISCIO2.png" alt="PEG personalizzati">
+                <p>Personalizzati</p>
+            </div>
+        </a>
     </div>
 </body>
 </html>
