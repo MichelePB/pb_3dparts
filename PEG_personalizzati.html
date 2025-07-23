@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta http-equiv="refresh" content="0">
     <link rel="shortcut icon" href="favicon.ico">
     <meta charset="UTF-8">
     <title>pb_3dparts</title>
@@ -20,6 +19,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
+            <script>
+              window.onload = function() {
+                // Ricarica una sola volta solo se non l'abbiamo già fatto
+            if (!window.location.href.includes("reloaded=true")) {
+          window.location.href = window.location.href + (window.location.href.includes("?") ? "&" : "?") + "reloaded=true";
+            }
+          };
+        </script>
             margin: 0;
             padding: 0;
             font-family: 'Verdana', sans-serif;
