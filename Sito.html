@@ -187,8 +187,17 @@
                 vertical-align: middle;
             }
 
+        .bottom-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px auto;
+            max-width: 900px;
+        }
+
         @media screen and (max-width: 768px) {
-            .card-container {
+            .card-container, .bottom-cards {
                 flex-direction: column;
                 align-items: center;
             }
@@ -266,10 +275,22 @@
 
         </div>
 
-        <div class="card" style="margin: 50px auto;" id="progettazione">
-            <h2>Progettazione su richiesta</h2>
-            <img src="Progettazione.png" height="160" alt="Progetti su richiesta">
-            <p>Richiedi il tuo prodotto interamente progettato per le tue esigenze!</p>
+        <div class="bottom-cards">
+            <!-- Nuova Card Griglia fanali -->
+            <a href="griglia-fanali.html" class="clickable" id="griglia-fanali">
+                <div class="card">
+                    <h2>Griglia fanali</h2>
+                    <img src="Griglia_fanali_copertina.png" height="160" alt="Griglia fanali">
+                    <p>Proteggi e personalizza i fanali della tua moto con stile</p>
+                </div>
+            </a>
+
+            <!-- Card Progettazione su richiesta -->
+            <div class="card" id="progettazione">
+                <h2>Progettazione su richiesta</h2>
+                <img src="Progettazione.png" height="160" alt="Progetti su richiesta">
+                <p>Richiedi il tuo prodotto interamente progettato per le tue esigenze!</p>
+            </div>
         </div>
 
         <div class="card" style="margin: 50px auto;" id="coming-soon">
