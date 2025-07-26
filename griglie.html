@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <title>pb_3dparts</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    <meta charset="UTF-8">
+    <title>Griglie fanali</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Verdana', sans-serif;
+            background: linear-gradient(to right, #f0f2f0, #000c40);
+            color: black;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .variant-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .variant-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .variant {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .variant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .variant img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .variant p {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .back-arrow {
+            position: absolute;
+            top: 40px;
+            left: 30px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .back-arrow:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-arrow::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-left: 3px solid #000;
+            border-bottom: 3px solid #000;
+            transform: rotate(45deg);
+            left: 10px;
+            top: 8px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #555;
+            font-weight: normal;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Sito.html" class="back-arrow" aria-label="Torna alla pagina precedente"></a>
+        <!-- <h1>Peg</h1> -->
+    </header>
+
+    <div class="variant-container">
+        <!-- Modello 1 -->
+        <a href="PEG_lisci.html" class="variant-link">
+            <div class="variant">
+                <img src="PB_LISCI.png" alt="PEG lisci">
+                <p align="center">Fanale anteriore Ciao</p>
+            </div>
+        </a>
+
+        <!-- Modello 2 -->
+        <a href="PEG_zigrinati.html" class="variant-link">
+            <div class="variant">
+                <img src="PB_ZIGRINATO.png" alt="PEG zigrinati">
+                <p align="center">Fanale anteriore Ciao Teen</p>
+            </div>
+        </a>
+
+        <!-- Modello 3 -->
+        <a href="PEG_personalizzati.html" class="variant-link">
+            <div class="variant">
+                <img src="PEG_sfuocati.png" alt="PEG personalizzati">
+                <p align="center">Fanale posteriore Ciao/Bravo</p>
+            </div>
+        </a>
+
+              <!-- Modello 4 -->
+        <a href="PEG_personalizzati.html" class="variant-link">
+            <div class="variant">
+                <img src="PEG_sfuocati.png" alt="PEG personalizzati">
+                <p align="center">Personalizzati</p>
+            </div>
+        </a>
+    </div>
+</body>
+</html>
