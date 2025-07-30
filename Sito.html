@@ -210,6 +210,23 @@
                 top: 30px;
             }
         }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 40px; /* distanza tra Instagram e Gmail */
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        gap: 10px;
+    }
     </style>
 </head>
 <body>
@@ -302,15 +319,17 @@
     </div>
 
     <footer>
-        <h3>Contattaci su </h3>
-        <a href="https://www.instagram.com/pb_3dparts/">
-            <img src="Instagram_icon.png" width="100" alt="Instagram">
-            <span size="5">pb_3dparts</span>
-        </a><br>
-        <a href="https://www.gmail.com/">
-            <img src="iconaGmail.png" width="100" alt="Gmail">
-            <span size="5">pb3dparts@gmail.com</span>
-        </a>
+    <h3>Contattaci su</h3>
+        <div class="social-links">
+            <a href="https://www.instagram.com/pb_3dparts/">
+            <img src="Instagram_icon.png" width="40" alt="Instagram">
+            <span>pb_3dparts</span>
+            </a>
+            <a href="https://www.gmail.com/">
+            <img src="iconaGmail.png" width="40" alt="Gmail">
+            <span>pb3dparts@gmail.com</span>
+            </a>
+        </div>
     </footer>
 
     <script>
