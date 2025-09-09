@@ -103,6 +103,13 @@
                     padding-left: 5px;
                 }
 
+        /* Centering the image in the menu */
+        .menu-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
         /* Animazione per il pulsante hamburger */
         .menu-btn.active span:nth-child(1) {
             transform: rotate(-45deg) translate(-5px, 6px);
@@ -245,7 +252,9 @@
 
     <!-- Menu laterale -->
     <div class="menu">
-        <img src="pb_logo.png" align=center width=80 alt="Logo PB">
+        <div class="menu-logo">
+            <img src="pb_logo.png" width="80" alt="Logo PB">
+        </div>
         <ul>
             <li><a href="peg.html">Peg</a></li>
             <li><a href="fluidi.html">Recupero fluidi</a></li>
