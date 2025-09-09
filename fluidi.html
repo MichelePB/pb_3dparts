@@ -87,25 +87,93 @@
     </style>
 </head>
 <body>
-    <header>
-        <a href="Sito.html" class="back-arrow" aria-label="Torna alla pagina precedente"></a>    
-         <h1>Recupero fluidi</h1>
-    </header>   
-   
-    <div class="variant">
-        <img src="Recupero fluidi KTM.png" alt="KTM">
-        <p>KTM</p>
+<div class="container">
+        <!-- Freccia per tornare indietro -->
+        <a href="peg.html" class="back-arrow">Torna ai prodotti</a>
+
+        <!-- Intestazione -->
+        <div class="header">
+            <h1>PEG</h1>
+            <h2>Lisci</h2>
+        </div>
+
+        <!-- Contenuto prodotto -->
+        <div class="product-container">
+            <div class="product-image">
+                <img src="PB_LISCI.png" alt="PEG liscio" 
+                     onclick="openLightbox('PB_LISCI.png', 'PEG lisci')">
+                <p class="product-description">PEG in PLA con design personalizzato</p>
+            </div>
+            
+            <div class="product-info">
+                <h3 class="product-title">Caratteristiche</h3>
+                <p class="product-description">
+                    PEG realizzato in PLA, disponibile in vari colori e loghi. 
+                    Design moderno per rendere più bella la tua moto, ma soprattutto indispensabili in caso di caduta.<br>
+                    Personalizzabile con logo, colore o testo a richiesta.
+                    E' possibile acquistare il kit 2 peg, che comprende:<br>
+                    - 2 peg;<br>
+                    - 1 barra filettata<br>
+                    Oppure il kit completo, che comprende:<br>
+                    - 4 peg;<br>
+                    - 2 barre filettate<br>
+                </p>
+                
+                <h3 class="product-title">Specifiche tecniche</h3>
+                <ul class="product-description">
+                    <li>Materiale: PLA</li>
+                    <li>Dimensioni: D3,5cm x 4cm</li>
+                    <li>Peso: 40g</li>
+                    <li>Colori disponibili: Nero, Rosso, Arancione, Bianco, Blu, Verde, Giallo</li>
+                </ul>
+                
+                <div class="product-price">€15,00</div>
+                <div class="product-price">€25,00 kit completo</div>
+                <div>
+                  <h3>Contattaci su Instagram per i tuoi PEG!</h3>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="variant">
-        <img src="KTM_LISCIO.png" alt="HUSQVARNA">
-        <p>Husqvarna</p>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
     </div>
 
-    <div class="variant">
-        <img src="Recupero fluidi BETA 2.png" alt="BETA">
-        <p>BETA</p>
-    </div>
+    <script>
+        // Funzione per aprire il lightbox
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightbox.style.display = 'block';
+            lightboxImg.src = imageSrc;
+            lightboxCaption.textContent = caption;
+            
+            // Blocca lo scroll della pagina
+            document.body.style.overflow = 'hidden';
+        }
 
+        // Funzione per chiudere il lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Chiudi il lightbox con il tasto ESC
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.key === "Escape") {
+                closeLightbox();
+            }
+        };
+    </script>
 </body>
 </html>
+
