@@ -15,74 +15,107 @@
     <meta name="theme-color" content="#ffffff">
     
     <meta charset="UTF-8">
-    <title>Recupero fluidi</title>
+    <title>Recupero fluidi - pb_3dparts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Verdana, sans-serif;
-            background: #f2f2f2;
-            padding: 30px;
-            text-align: center;
             margin: 0;
             padding: 0;
             font-family: 'Verdana', sans-serif;
             background: linear-gradient(to right, #f0f2f0, #000c40);
-            color: black; 
+            color: black;
         }
 
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
-        .variant {
-            display: inline-block;
-            margin: 20px;
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .header h2 {
+            color: #555;
+            font-weight: normal;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .variant img {
-            width: 200px;
-            border-radius: 8px;
-        }
-
-        .variant p {
-            margin-top: 10px;
-        }
-        .back-arrow {
-            position: absolute;
-            top: 40px;
-            left: 30px;
-            width: 40px;
-            height: 40px;
             cursor: pointer;
-            z-index: 1001;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
 
-        .back-arrow:hover {
-            transform: translateX(-5px);
+        .product-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2a5a9a;
+            margin: 25px 0;
+        }
+
+        .back-arrow {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #2a5a9a;
+            font-weight: bold;
         }
 
         .back-arrow::before {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-left: 3px solid #000;
-            border-bottom: 3px solid #000;
-            transform: rotate(45deg);
-            left: 10px;
-            top: 8px;
-        }
-        header {
-            text-align: center;
-            padding: 30px 0;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
+            content: "←";
+            margin-right: 5px;
         }
 
         /* Lightbox Stili */
@@ -144,36 +177,35 @@
     </style>
 </head>
 <body>
-<div class="container">
+    <div class="container">
         <!-- Freccia per tornare indietro -->
-        <a href="peg.html" class="back-arrow">Torna ai prodotti</a>
+        <a href="Sito.html" class="back-arrow">Torna ai prodotti</a>
 
         <!-- Intestazione -->
         <div class="header">
-            <h1>PEG</h1>
-            <h2>Lisci</h2>
+            <h1>Recupero fluidi</h1>
         </div>
 
         <!-- Contenuto prodotto -->
         <div class="product-container">
             <div class="product-image">
-                <img src="PB_LISCI.png" alt="PEG liscio" 
-                     onclick="openLightbox('PB_LISCI.png', 'PEG lisci')">
-                <p class="product-description">PEG in PLA con design personalizzato</p>
+                <img src="Fluidi_copertina.png" alt="Recupero fluidi" 
+                     onclick="openLightbox('Fluidi_copertina.png', 'Recupero fluidi')">
+                <p class="product-description">Recupero fluidi in PLA con design personalizzato</p>
             </div>
             
             <div class="product-info">
                 <h3 class="product-title">Caratteristiche</h3>
                 <p class="product-description">
-                    PEG realizzato in PLA, disponibile in vari colori e loghi. 
-                    Design moderno per rendere più bella la tua moto, ma soprattutto indispensabili in caso di caduta.<br>
+                    Recupero fluidi realizzato in PLA, disponibile con vari colori e loghi. 
+                    Design moderno per rendere più bella la tua moto, ma soprattutto indispensabili per non sporcare la moto.<br>
                     Personalizzabile con logo, colore o testo a richiesta.
-                    E' possibile acquistare il kit 2 peg, che comprende:<br>
-                    - 2 peg;<br>
-                    - 1 barra filettata<br>
-                    Oppure il kit completo, che comprende:<br>
-                    - 4 peg;<br>
-                    - 2 barre filettate<br>
+                    Con il nostro kit, grazie allo sgancio rapido, puoi facilmente rimuovere il recupero fluidi e svuotarlo,
+                    lasciando la slitta fissa sul telaio della tua moto.
+                    Il kit comprende:<br>
+                    - 1 contenitore;<br>
+                    - 1 tappo per il contenitore<br>
+                    - 1 slitta da fissare sul telaio<br>
                 </p>
                 
                 <h3 class="product-title">Specifiche tecniche</h3>
@@ -181,13 +213,12 @@
                     <li>Materiale: PLA</li>
                     <li>Dimensioni: D3,5cm x 4cm</li>
                     <li>Peso: 40g</li>
-                    <li>Colori disponibili: Nero, Rosso, Arancione, Bianco, Blu, Verde, Giallo</li>
+                    <li>Colori disponibili: Nero, Rosso, Arancione, Bianco <!--, Blu, Verde, Giallo --> </li>
                 </ul>
                 
-                <div class="product-price">€15,00</div>
-                <div class="product-price">€25,00 kit completo</div>
+                <div class="product-price">€25,00</div>
                 <div>
-                  <h3>Contattaci su Instagram per i tuoi PEG!</h3>
+                  <h3>Contattaci su Instagram per il tuo recupero fluidi!</h3>
                 </div>
             </div>
         </div>
@@ -233,5 +264,3 @@
     </script>
 </body>
 </html>
-
-
