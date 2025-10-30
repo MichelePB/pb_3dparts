@@ -15,8 +15,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Google Font Orbitron -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -35,17 +35,17 @@
             position: relative;
         }
 
-            header img {
-                width: 100px;
-            }
+        header img {
+            width: 100px;
+        }
 
-            header h1 {
-                font-family: 'Orbitron', sans-serif;
-                font-size: 48px;
-                color: #000;
-            }
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            color: #000;
+        }
 
-        /* Stili per il menu hamburger */
+        /* --- MENU HAMBURGER --- */
         .menu-btn {
             position: absolute;
             top: 40px;
@@ -54,14 +54,14 @@
             z-index: 1001;
         }
 
-            .menu-btn span {
-                display: block;
-                width: 30px;
-                height: 3px;
-                background: #000;
-                margin: 6px 0;
-                transition: 0.4s;
-            }
+        .menu-btn span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: #000;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
 
         .menu {
             position: fixed;
@@ -76,42 +76,40 @@
             padding-top: 80px;
         }
 
-            .menu.active {
-                right: 0;
-            }
+        .menu.active {
+            right: 0;
+        }
 
-            .menu ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-            .menu li {
-                padding: 15px 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
+        .menu li {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-            .menu a {
-                text-decoration: none;
-                color: white;
-                font-size: 16px;
-                display: block;
-                transition: 0.3s;
-            }
+        .menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            display: block;
+            transition: 0.3s;
+        }
 
-                .menu a:hover {
-                    color: #e0e0e0;
-                    padding-left: 5px;
-                }
+        .menu a:hover {
+            color: #e0e0e0;
+            padding-left: 5px;
+        }
 
-        /* Centraggio dell'immagine nel menù laterale */
         .menu-logo {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
         }
 
-        /* Animazione per il pulsante hamburger */
         .menu-btn.active span:nth-child(1) {
             transform: rotate(-45deg) translate(-6px, 6px);
             background: white;
@@ -126,6 +124,7 @@
             background: white;
         }
 
+        /* --- CONTENUTO --- */
         .content {
             padding: 40px;
             max-width: 1200px;
@@ -156,44 +155,26 @@
             cursor: pointer;
         }
 
-            .card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
-            .card img {
-                max-width: 100%;
-                border-radius: 10px;
-                margin-bottom: 10px;
-            }
+        .card img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
 
-            .card p {
-                font-size: 16px;
-            }
+        .card p {
+            font-size: 16px;
+        }
 
         .clickable {
             text-decoration: none;
             color: inherit;
             display: block;
         }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #fff;
-            margin-top: 40px;
-        }
-
-            footer a {
-                color: black;
-                font-size: 14px;
-                text-decoration: none;
-            }
-
-            footer img {
-                width: 40px;
-                vertical-align: middle;
-            }
 
         .bottom-cards {
             display: flex;
@@ -219,65 +200,108 @@
             }
         }
 
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 40px; /* distanza tra Instagram e Gmail */
-        align-items: center;
-        flex-wrap: wrap;
-        margin-top: 10px;
-    }
+        /* --- FOOTER CON FADE-IN ALLO SCROLL --- */
+        footer {
+          text-align: center;
+          padding: 30px 20px;
+          background: #ffffff;
+          margin-top: 40px;
+          font-family: 'Poppins', sans-serif;
+          color: #111;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 1s ease, transform 1s ease;
+        }
 
-    .social-links a {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: black;
-        gap: 10px;
-    }
+        footer.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
 
-    /* Contenitore dell’icona */
-    .social-icon {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background-color: #ffffff;
-      border-radius: 40%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 1000;
-    }
+        footer h3 {
+          font-weight: 600;
+          font-size: 22px;
+          letter-spacing: 0.5px;
+          margin-bottom: 20px;
+        }
 
-    .social-icon:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-    }
+        footer .social-links {
+          display: flex;
+          justify-content: center;
+          gap: 40px;
+          align-items: center;
+          flex-wrap: wrap;
+        }
 
-    .social-icon img {
-      width: 38px;
-      height: 38px;
-    }
+        footer .social-links a {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          text-decoration: none;
+          color: #222;
+          font-family: 'Poppins', sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          transition: color 0.3s ease, transform 0.3s ease;
+        }
 
-    /* --- VERSIONE MOBILE --- */
-    @media (max-width: 750px) {
-      .social-icon {
-        width: 60px;
-        height: 60px;
-        bottom: 15px;
-        right: 15px;
-      }
+        footer .social-links a:hover {
+          color: #007bff;
+          transform: translateY(-3px);
+        }
 
-      .social-icon img {
-        width: 40px;
-        height: 40px;
-      }
-    }
+        footer .social-links img {
+          width: 36px;
+          height: 36px;
+          vertical-align: middle;
+          transition: transform 0.3s ease;
+        }
+
+        footer .social-links img:hover {
+          transform: scale(1.1);
+        }
+
+        /* --- ICONA INSTAGRAM FISSA --- */
+        .social-icon {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 60px;
+          height: 60px;
+          background-color: #ffffff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          z-index: 1000;
+        }
+
+        .social-icon:hover {
+          transform: scale(1.1);
+          box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        .social-icon img {
+          width: 38px;
+          height: 38px;
+        }
+
+        @media (max-width: 750px) {
+          .social-icon {
+            width: 90px;
+            height: 90px;
+            bottom: 25px;
+            right: 25px;
+          }
+
+          .social-icon img {
+            width: 55px;
+            height: 55px;
+          }
+        }
     </style>
 </head>
 <body>
@@ -286,7 +310,6 @@
         <img src="pb_logoNObg.png" alt="Logo PB">
         <h1><b>pb_3dparts</b></h1>
 
-        <!-- Pulsante hamburger menu -->
         <div class="menu-btn">
             <span></span>
             <span></span>
@@ -294,7 +317,6 @@
         </div>
     </header>
 
-    <!-- Menu laterale -->
     <div class="menu">
         <div class="menu-logo">
             <img src="pb_logoNObg.png" width="80" alt="Logo PB">
@@ -316,8 +338,6 @@
         </div>
 
         <div class="card-container">
-
-            <!-- Card Peg/Tamponi moto -->
             <a href="peg.html" class="clickable" id="peg">
                 <div class="card">
                     <h2>Peg moto</h2>
@@ -326,7 +346,6 @@
                 </div>
             </a>
 
-            <!-- Card Recupero fluidi -->
             <a href="fluidi.html" class="clickable" id="fluidi">
                 <div class="card">
                     <h2>Recupero fluidi</h2>
@@ -335,7 +354,6 @@
                 </div>
             </a>
 
-            <!-- Card Portachiavi -->
             <a href="portachiavi.html" class="clickable" id="portachiavi">
                 <div class="card">
                     <h2>Portachiavi</h2>
@@ -343,11 +361,9 @@
                     <p>Design personalizzato per un tocco unico alle tue chiavi</p>
                 </div>
             </a>
-
         </div>
 
         <div class="bottom-cards">
-            <!-- Nuova Card Griglie fanali -->
             <a href="griglie.html" class="clickable" id="griglie fanali">
                 <div class="card">
                     <h2>Griglia fanali</h2>
@@ -356,7 +372,6 @@
                 </div>
             </a>
 
-            <!-- Card Progettazione su richiesta -->
             <a href="ProgettazioneSuRichiesta.html" class="clickable" id="Progettazione">
                 <div class="card" id="progettazione">
                     <h2>Progettazione su richiesta</h2>
@@ -365,8 +380,7 @@
                 </div>
             </a>
 
-            <!-- Coming Soon -->
-            <a href="#coming-soon" class="clickable"> <!-- Ho aggiunto un link per coerenza con le altre card -->
+            <a href="#coming-soon" class="clickable">
                 <div class="card" id="Coming_soon">
                     <h2>Coming soon!</h2>
                     <p>Nuovi prodotti in arrivo. Resta aggiornato!</p>
@@ -375,27 +389,26 @@
         </div>
     </div>
 
-    <footer>
-    <h3>Contattaci su</h3>
+    <footer id="footer">
+        <h3>Contattaci su</h3>
         <div class="social-links">
             <a href="https://www.instagram.com/pb_3dparts/">
-            <img src="Instagram_icon.png" width="40" alt="Instagram">
-            <span>pb_3dparts</span>
+                <img src="Instagram_icon.png" width="40" alt="Instagram">
+                <span>pb_3dparts</span>
             </a>
-            <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqZhpwmPFKfWMNXwLfChcSrWsPjshvgtDZrFWvQCjBKnLZWXhBfnBclqlLDCmSbrmcNbSq">
-            <img src="iconaGmail.png" width="40" alt="Gmail">
-            <span>pb3dparts@gmail.com</span>
+            <a href="mailto:pb3dparts@gmail.com">
+                <img src="iconaGmail.png" width="40" alt="Gmail">
+                <span>pb3dparts@gmail.com</span>
             </a>
         </div>
     </footer>
-    
-    <!-- Icona di instagram fissa in basso a dx -->
+
     <a href="https://www.instagram.com/pb_3dparts" target="_blank" class="social-icon">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
     </a>
 
     <script>
-        // Script per aprire/chiudere il menu
+        // --- MENU ---
         const menuBtn = document.querySelector('.menu-btn');
         const menu = document.querySelector('.menu');
 
@@ -404,7 +417,6 @@
             menu.classList.toggle('active');
         });
 
-        // Chiudi il menu quando si clicca su un link
         const menuLinks = document.querySelectorAll('.menu a');
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -412,20 +424,21 @@
                 menu.classList.remove('active');
             });
         });
+
+        // --- FADE-IN FOOTER QUANDO ENTRA IN VISTA ---
+        const footer = document.querySelector('footer');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    footer.classList.add('visible');
+                    observer.unobserve(footer); // Rimuove l’osservatore dopo l’attivazione
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(footer);
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
