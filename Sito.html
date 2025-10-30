@@ -1,426 +1,437 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pb_3dparts</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pb_3dparts</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* --- BASE --- */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f0f2f0, #000c40);
+      color: #000;
+    }
 
-    <style>
-        /* --- BASE --- */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #f0f2f0, #000c40);
-            color: black;
-        }
+    header {
+      text-align: center;
+      padding: 30px 0;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+    }
 
-        header {
-            text-align: center;
-            padding: 30px 0;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
+    header img {
+      width: 100px;
+    }
 
-        header img {
-            width: 100px;
-        }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 48px;
+      color: #000;
+    }
 
-        header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 48px;
-            color: #000;
-        }
+    /* --- MENU LATERALE --- */
+    .menu-btn {
+      position: absolute;
+      top: 40px;
+      right: 30px;
+      cursor: pointer;
+      z-index: 1001;
+    }
 
-        /* --- MENU LATERALE --- */
-        .menu-btn {
-            position: absolute;
-            top: 40px;
-            right: 30px;
-            cursor: pointer;
-            z-index: 1001;
-        }
+    .menu-btn span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #000;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
 
-        .menu-btn span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: #000;
-            margin: 6px 0;
-            transition: 0.4s;
-        }
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 250px;
+      height: 100%;
+      background: linear-gradient(135deg, #5592d9 0%, #2a5a9a 100%);
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: 0.4s;
+      padding-top: 80px;
+    }
 
-        .menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 250px;
-            height: 100%;
-            background: linear-gradient(135deg, #5592d9 0%, #2a5a9a 100%);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            transition: 0.4s;
-            padding-top: 80px;
-        }
+    .menu.active {
+      right: 0;
+    }
 
-        .menu.active {
-            right: 0;
-        }
+    .menu-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
 
-        .menu-logo {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+    .menu-logo img {
+      width: 80px;
+      border-radius: 50%;
+    }
 
-        .menu-logo img {
-            width: 80px;
-            border-radius: 50%;
-        }
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        .menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    .menu li {
+      padding: 15px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-        .menu li {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+    .menu a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: block;
+      transition: 0.3s;
+    }
 
-        .menu a {
-            text-decoration: none;
-            color: white;
-            font-size: 16px;
-            display: block;
-            transition: 0.3s;
-        }
+    .menu a:hover {
+      color: #e0e0e0;
+      padding-left: 5px;
+    }
 
-        .menu a:hover {
-            color: #e0e0e0;
-            padding-left: 5px;
-        }
+    .menu-btn.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-6px, 6px);
+      background: white;
+    }
 
-        .menu-btn.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-6px, 6px);
-            background: white;
-        }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
 
-        .menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
+    .menu-btn.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-6px, -6px);
+      background: white;
+    }
 
-        .menu-btn.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-6px, -6px);
-            background: white;
-        }
+    /* --- CONTENUTO --- */
+    .content {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-        /* --- CONTENUTO --- */
-        .content {
-            padding: 40px;
-            max-width: 1200px;
-            margin: auto;
-        }
+    .intro {
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-        .intro {
-            font-size: 18px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
+    .card-container, .bottom-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
 
-        .card-container, .bottom-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      width: 280px;
+      border-radius: 15px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.15);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 380px; /* 🔹 altezza uniforme */
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            width: 280px;
-            border-radius: 15px;
-            box-shadow: 0 0 12px rgba(0,0,0,0.15);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
 
-        .card img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
+    .card h2 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
 
-        .card p {
-            font-size: 16px;
-        }
+    .card p {
+      font-size: 15px;
+      line-height: 1.4;
+    }
 
-        .clickable {
-            text-decoration: none;
-            color: inherit;
-        }
+    .clickable {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            background: #fff;
-            margin-top: 40px;
-            font-family: 'Poppins', sans-serif;
-            color: #111;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #fff;
+      margin-top: 40px;
+      color: #111;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
 
-        footer.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    footer.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        footer h3 {
-            font-weight: 600;
-            font-size: 22px;
-            letter-spacing: 0.5px;
-            margin-bottom: 20px;
-        }
+    footer h3 {
+      font-weight: 600;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        .social-links a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: #222;
-            font-size: 16px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #222;
+      font-size: 16px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
 
-        .social-links a:hover {
-            color: #007bff;
-            transform: translateY(-3px);
-        }
+    .social-links a:hover {
+      color: #007bff;
+      transform: translateY(-3px);
+    }
 
-        .social-links img {
-            width: 36px;
-            height: 36px;
-            transition: transform 0.3s ease;
-        }
+    .social-links img {
+      width: 36px;
+      height: 36px;
+      transition: transform 0.3s ease;
+    }
 
-        .social-links img:hover {
-            transform: scale(1.1);
-        }
+    .social-links img:hover {
+      transform: scale(1.1);
+    }
 
-        /* --- ICONA INSTAGRAM FISSA --- */
-        .social-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            z-index: 1000;
-        }
+    /* --- ICONA INSTAGRAM FISSA --- */
+    .social-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 1000;
+    }
 
-        .social-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-        }
+    .social-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
 
-        .social-icon img {
-            width: 38px;
-            height: 38px;
-        }
+    .social-icon img {
+      width: 38px;
+      height: 38px;
+    }
 
-        @media (max-width: 750px) {
-            .card-container, .bottom-cards {
-                flex-direction: column;
-                align-items: center;
-            }
+    @media (max-width: 750px) {
+      .card-container, .bottom-cards {
+        flex-direction: column;
+        align-items: center;
+      }
 
-            header h1 {
-                font-size: 36px;
-            }
+      .card {
+        width: 90%;
+        height: auto;
+      }
 
-            .menu-btn {
-                top: 30px;
-            }
+      header h1 {
+        font-size: 36px;
+      }
 
-            .social-icon {
-                width: 70px;
-                height: 70px;
-                bottom: 15px;
-                right: 15px;
-            }
+      .menu-btn {
+        top: 30px;
+      }
 
-            .social-icon img {
-                width: 46px;
-                height: 46px;
-            }
-        }
-    </style>
+      .social-icon {
+        width: 70px;
+        height: 70px;
+        bottom: 15px;
+        right: 15px;
+      }
+
+      .social-icon img {
+        width: 46px;
+        height: 46px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <img src="pb_logoNObg.png" alt="Logo PB">
-        <h1><b>pb_3dparts</b></h1>
+  <header>
+    <img src="pb_logoNObg.png" alt="Logo PB">
+    <h1><b>pb_3dparts</b></h1>
 
-        <div class="menu-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </header>
+    <div class="menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
 
-    <div class="menu">
-        <div class="menu-logo">
-            <img src="pb_logoNObg.png" alt="Logo PB">
-        </div>
-        <ul>
-            <li><a href="peg.html">Peg</a></li>
-            <li><a href="fluidi.html">Recupero fluidi</a></li>
-            <li><a href="portachiavi.html">Portachiavi</a></li>
-            <li><a href="griglie.html">Griglie fanali</a></li>
-            <li><a href="ProgettazioneSuRichiesta.html">Progettazione su richiesta</a></li>
-            <li><a href="#coming-soon">Coming soon</a></li>
-            <li><a href="#contatti">Contatti</a></li>
-        </ul>
+  <div class="menu">
+    <div class="menu-logo">
+      <img src="pb_logoNObg.png" alt="Logo PB">
+    </div>
+    <ul>
+      <li><a href="peg.html">Peg</a></li>
+      <li><a href="fluidi.html">Recupero fluidi</a></li>
+      <li><a href="portachiavi.html">Portachiavi</a></li>
+      <li><a href="griglie.html">Griglie fanali</a></li>
+      <li><a href="ProgettazioneSuRichiesta.html">Progettazione su richiesta</a></li>
+      <li><a href="#coming-soon">Coming soon</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="intro">
+      Personalizza la tua moto con gli accessori che preferisci
     </div>
 
-    <div class="content">
-        <div class="intro">
-            Personalizza la tua moto con gli accessori che preferisci
+    <div class="card-container">
+      <a href="peg.html" class="clickable">
+        <div class="card">
+          <h2>Peg moto</h2>
+          <img src="Tamponi_copertina.png" alt="Tamponi moto">
+          <p>Scegli il prodotto più adatto a te e alla tua moto</p>
         </div>
+      </a>
 
-        <div class="card-container">
-            <a href="peg.html" class="clickable">
-                <div class="card">
-                    <h2>Peg moto</h2>
-                    <img src="Tamponi_copertina.png" alt="Tamponi moto">
-                    <p>Scegli il prodotto più adatto a te e alla tua moto</p>
-                </div>
-            </a>
-
-            <a href="fluidi.html" class="clickable">
-                <div class="card">
-                    <h2>Recupero fluidi</h2>
-                    <img src="Fluidi_copertina.png" alt="Recupero fluidi">
-                    <p>Pratico serbatoio per il recupero dei fluidi della tua moto</p>
-                </div>
-            </a>
-
-            <a href="portachiavi.html" class="clickable">
-                <div class="card">
-                    <h2>Portachiavi</h2>
-                    <img src="Portachiavi_copertina.png" alt="Portachiavi moto">
-                    <p>Design personalizzato per un tocco unico alle tue chiavi</p>
-                </div>
-            </a>
+      <a href="fluidi.html" class="clickable">
+        <div class="card">
+          <h2>Recupero fluidi</h2>
+          <img src="Fluidi_copertina.png" alt="Recupero fluidi">
+          <p>Pratico serbatoio per il recupero dei fluidi della tua moto</p>
         </div>
+      </a>
 
-        <div class="bottom-cards">
-            <a href="griglie.html" class="clickable">
-                <div class="card">
-                    <h2>Griglia fanali</h2>
-                    <img src="Copertina_griglie_card.png" alt="Griglia fanali">
-                    <p>Proteggi e personalizza i fanali della tua moto con stile</p>
-                </div>
-            </a>
-
-            <a href="ProgettazioneSuRichiesta.html" class="clickable">
-                <div class="card">
-                    <h2>Progettazione su richiesta</h2>
-                    <img src="Progettazione.png" alt="Progetti su richiesta">
-                    <p>Richiedi il tuo prodotto interamente progettato per le tue esigenze!</p>
-                </div>
-            </a>
-
-            <a href="#coming-soon" class="clickable">
-                <div class="card">
-                    <h2>Coming soon!</h2>
-                    <p>Nuovi prodotti in arrivo. Resta aggiornato!</p>
-                </div>
-            </a>
+      <a href="portachiavi.html" class="clickable">
+        <div class="card">
+          <h2>Portachiavi</h2>
+          <img src="Portachiavi_copertina.png" alt="Portachiavi moto">
+          <p>Design personalizzato per un tocco unico alle tue chiavi</p>
         </div>
+      </a>
     </div>
 
-    <footer id="footer">
-        <h3>Contattaci su</h3>
-        <div class="social-links">
-            <a href="https://www.instagram.com/pb_3dparts/" target="_blank">
-                <img src="Instagram_icon.png" alt="Instagram">
-                <span>pb_3dparts</span>
-            </a>
-            <a href="mailto:pb3dparts@gmail.com">
-                <img src="iconaGmail.png" alt="Gmail">
-                <span>pb3dparts@gmail.com</span>
-            </a>
+    <div class="bottom-cards">
+      <a href="griglie.html" class="clickable">
+        <div class="card">
+          <h2>Griglia fanali</h2>
+          <img src="Copertina_griglie_card.png" alt="Griglia fanali">
+          <p>Proteggi e personalizza i fanali della tua moto con stile</p>
         </div>
-    </footer>
+      </a>
 
-    <a href="https://www.instagram.com/pb_3dparts" target="_blank" class="social-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-    </a>
+      <a href="ProgettazioneSuRichiesta.html" class="clickable">
+        <div class="card">
+          <h2>Progettazione su richiesta</h2>
+          <img src="Progettazione.png" alt="Progetti su richiesta">
+          <p>Richiedi il tuo prodotto interamente progettato per le tue esigenze!</p>
+        </div>
+      </a>
 
-    <script>
-        // --- MENU MOBILE ---
-        const menuBtn = document.querySelector('.menu-btn');
-        const menu = document.querySelector('.menu');
+      <a href="#coming-soon" class="clickable">
+        <div class="card">
+          <h2>Coming soon!</h2>
+          <p>Nuovi prodotti in arrivo. Resta aggiornato!</p>
+        </div>
+      </a>
+    </div>
+  </div>
 
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            menu.classList.toggle('active');
-        });
+  <footer id="footer">
+    <h3>Contattaci su</h3>
+    <div class="social-links">
+      <a href="https://www.instagram.com/pb_3dparts/" target="_blank">
+        <img src="Instagram_icon.png" alt="Instagram">
+        <span>pb_3dparts</span>
+      </a>
+      <a href="mailto:pb3dparts@gmail.com">
+        <img src="iconaGmail.png" alt="Gmail">
+        <span>pb3dparts@gmail.com</span>
+      </a>
+    </div>
+  </footer>
 
-        document.querySelectorAll('.menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuBtn.classList.remove('active');
-                menu.classList.remove('active');
-            });
-        });
+  <a href="https://www.instagram.com/pb_3dparts" target="_blank" class="social-icon">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+  </a>
 
-        // --- FOOTER FADE-IN ---
-        const footer = document.querySelector('footer');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    footer.classList.add('visible');
-                    observer.unobserve(footer);
-                }
-            });
-        }, { threshold: 0.3 });
-        observer.observe(footer);
-    </script>
+  <script>
+    // --- MENU MOBILE ---
+    const menuBtn = document.querySelector('.menu-btn');
+    const menu = document.querySelector('.menu');
+
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      menu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        menu.classList.remove('active');
+      });
+    });
+
+    // --- FOOTER FADE-IN ---
+    const footer = document.querySelector('footer');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          footer.classList.add('visible');
+          observer.unobserve(footer);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(footer);
+  </script>
 
 </body>
 </html>
