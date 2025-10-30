@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <link rel="shortcut icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pb_3dparts</title>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="favicon.ico">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
+        /* --- BASE --- */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Verdana', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(to right, #f0f2f0, #000c40);
             color: black;
         }
@@ -31,7 +25,7 @@
             text-align: center;
             padding: 30px 0;
             background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             position: relative;
         }
 
@@ -69,7 +63,7 @@
             right: -300px;
             width: 250px;
             height: 100%;
-            background: linear-gradient(135deg, #5592d9 0%, #2a5a9a 100%);
+            background: linear-gradient(135deg, #5592d9, #2a5a9a);
             box-shadow: -5px 0 15px rgba(0,0,0,0.3);
             z-index: 1000;
             transition: 0.4s;
@@ -104,12 +98,6 @@
             padding-left: 5px;
         }
 
-        .menu-logo {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
         .menu-btn.active span:nth-child(1) {
             transform: rotate(-45deg) translate(-6px, 6px);
             background: white;
@@ -137,7 +125,7 @@
             margin-bottom: 40px;
         }
 
-        .card-container {
+        .card-container, .bottom-cards {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
@@ -151,7 +139,7 @@
             box-shadow: 0 0 12px rgba(0,0,0,0.15);
             padding: 20px;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
 
@@ -166,26 +154,99 @@
             margin-bottom: 10px;
         }
 
-        .card p {
-            font-size: 16px;
-        }
-
         .clickable {
             text-decoration: none;
             color: inherit;
-            display: block;
         }
 
-        .bottom-cards {
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            margin-top: 40px;
+            font-family: 'Poppins', sans-serif;
+            color: #111;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer h3 {
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        footer .social-links {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            margin: 50px auto;
-            max-width: 900px;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        @media screen and (max-width: 750px) {
+        footer .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #222;
+            font-size: 16px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #007bff;
+            transform: translateY(-3px);
+        }
+
+        footer .social-links img {
+            width: 36px;
+            height: 36px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        footer .social-links img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- ICONA INSTAGRAM FISSA --- */
+        .social-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            z-index: 1000;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        .social-icon img {
+            width: 38px;
+            height: 38px;
+        }
+
+        @media (max-width: 750px) {
             .card-container, .bottom-cards {
                 flex-direction: column;
                 align-items: center;
@@ -198,112 +259,22 @@
             .menu-btn {
                 top: 30px;
             }
-        }
 
-        /* --- FOOTER CON FADE-IN ALLO SCROLL --- */
-        footer {
-          text-align: center;
-          padding: 30px 20px;
-          background: #ffffff;
-          margin-top: 40px;
-          font-family: 'Poppins', sans-serif;
-          color: #111;
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 1s ease, transform 1s ease;
-        }
+            .social-icon {
+                width: 70px;
+                height: 70px;
+                bottom: 15px;
+                right: 15px;
+            }
 
-        footer.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        footer h3 {
-          font-weight: 600;
-          font-size: 22px;
-          letter-spacing: 0.5px;
-          margin-bottom: 20px;
-        }
-
-        footer .social-links {
-          display: flex;
-          justify-content: center;
-          gap: 40px;
-          align-items: center;
-          flex-wrap: wrap;
-        }
-
-        footer .social-links a {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          text-decoration: none;
-          color: #222;
-          font-family: 'Poppins', sans-serif;
-          font-size: 16px;
-          font-weight: 400;
-          transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        footer .social-links a:hover {
-          color: #007bff;
-          transform: translateY(-3px);
-        }
-
-        footer .social-links img {
-          width: 36px;
-          height: 36px;
-          vertical-align: middle;
-          transition: transform 0.3s ease;
-        }
-
-        footer .social-links img:hover {
-          transform: scale(1.1);
-        }
-
-        /* --- ICONA INSTAGRAM FISSA --- */
-        .social-icon {
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-          width: 60px;
-          height: 60px;
-          background-color: #ffffff;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-          cursor: pointer;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-          z-index: 1000;
-        }
-
-        .social-icon:hover {
-          transform: scale(1.1);
-          box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-        }
-
-        .social-icon img {
-          width: 38px;
-          height: 38px;
-        }
-
-        @media (max-width: 750px) {
-          .social-icon {
-            width: 65px;
-            height: 65px;
-            bottom: 15px;
-            right: 15px;
-          }
-
-          .social-icon img {
-            width: 45px;
-            height: 45px;
-          }
+            .social-icon img {
+                width: 46px;
+                height: 46px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -318,17 +289,14 @@
     </header>
 
     <div class="menu">
-        <div class="menu-logo">
-            <img src="pb_logoNObg.png" width="80" alt="Logo PB">
-        </div>
         <ul>
             <li><a href="peg.html">Peg</a></li>
             <li><a href="fluidi.html">Recupero fluidi</a></li>
             <li><a href="portachiavi.html">Portachiavi</a></li>
             <li><a href="griglie.html">Griglie fanali</a></li>
-            <li><a href="#progettazione">Progettazione su richiesta</a></li>
+            <li><a href="ProgettazioneSuRichiesta.html">Progettazione su richiesta</a></li>
             <li><a href="#coming-soon">Coming soon</a></li>
-            <li><a href="#coming-soon">Contatti</a></li>
+            <li><a href="#contatti">Contatti</a></li>
         </ul>
     </div>
 
@@ -338,50 +306,50 @@
         </div>
 
         <div class="card-container">
-            <a href="peg.html" class="clickable" id="peg">
+            <a href="peg.html" class="clickable">
                 <div class="card">
                     <h2>Peg moto</h2>
-                    <img src="Tamponi_copertina.png" height="160" alt="Tamponi moto">
+                    <img src="Tamponi_copertina.png" alt="Tamponi moto">
                     <p>Scegli il prodotto più adatto a te e alla tua moto</p>
                 </div>
             </a>
 
-            <a href="fluidi.html" class="clickable" id="fluidi">
+            <a href="fluidi.html" class="clickable">
                 <div class="card">
                     <h2>Recupero fluidi</h2>
-                    <img src="Fluidi_copertina.png" height="160" alt="Recupero fluidi">
+                    <img src="Fluidi_copertina.png" alt="Recupero fluidi">
                     <p>Pratico serbatoio per il recupero dei fluidi della tua moto</p>
                 </div>
             </a>
 
-            <a href="portachiavi.html" class="clickable" id="portachiavi">
+            <a href="portachiavi.html" class="clickable">
                 <div class="card">
                     <h2>Portachiavi</h2>
-                    <img src="Portachiavi_copertina.png" height="160" alt="Portachiavi moto">
+                    <img src="Portachiavi_copertina.png" alt="Portachiavi moto">
                     <p>Design personalizzato per un tocco unico alle tue chiavi</p>
                 </div>
             </a>
         </div>
 
         <div class="bottom-cards">
-            <a href="griglie.html" class="clickable" id="griglie fanali">
+            <a href="griglie.html" class="clickable">
                 <div class="card">
                     <h2>Griglia fanali</h2>
-                    <img src="Copertina_griglie_card.png" height="220" alt="Griglia fanali">
+                    <img src="Copertina_griglie_card.png" alt="Griglia fanali">
                     <p>Proteggi e personalizza i fanali della tua moto con stile</p>
                 </div>
             </a>
 
-            <a href="ProgettazioneSuRichiesta.html" class="clickable" id="Progettazione">
-                <div class="card" id="progettazione">
+            <a href="ProgettazioneSuRichiesta.html" class="clickable">
+                <div class="card">
                     <h2>Progettazione su richiesta</h2>
-                    <img src="Progettazione.png" height="160" alt="Progetti su richiesta">
+                    <img src="Progettazione.png" alt="Progetti su richiesta">
                     <p>Richiedi il tuo prodotto interamente progettato per le tue esigenze!</p>
                 </div>
             </a>
 
             <a href="#coming-soon" class="clickable">
-                <div class="card" id="Coming_soon">
+                <div class="card">
                     <h2>Coming soon!</h2>
                     <p>Nuovi prodotti in arrivo. Resta aggiornato!</p>
                 </div>
@@ -392,12 +360,12 @@
     <footer id="footer">
         <h3>Contattaci su</h3>
         <div class="social-links">
-            <a href="https://www.instagram.com/pb_3dparts/">
-                <img src="Instagram_icon.png" width="40" alt="Instagram">
+            <a href="https://www.instagram.com/pb_3dparts/" target="_blank">
+                <img src="Instagram_icon.png" alt="Instagram">
                 <span>pb_3dparts</span>
             </a>
             <a href="mailto:pb3dparts@gmail.com">
-                <img src="iconaGmail.png" width="40" alt="Gmail">
+                <img src="iconaGmail.png" alt="Gmail">
                 <span>pb3dparts@gmail.com</span>
             </a>
         </div>
@@ -408,7 +376,7 @@
     </a>
 
     <script>
-        // --- MENU ---
+        // --- MENU MOBILE ---
         const menuBtn = document.querySelector('.menu-btn');
         const menu = document.querySelector('.menu');
 
@@ -417,31 +385,24 @@
             menu.classList.toggle('active');
         });
 
-        const menuLinks = document.querySelectorAll('.menu a');
-        menuLinks.forEach(link => {
+        document.querySelectorAll('.menu a').forEach(link => {
             link.addEventListener('click', () => {
                 menuBtn.classList.remove('active');
                 menu.classList.remove('active');
             });
         });
 
-        // --- FADE-IN FOOTER QUANDO ENTRA IN VISTA ---
+        // --- FADE-IN FOOTER ALLO SCROLL ---
         const footer = document.querySelector('footer');
-
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     footer.classList.add('visible');
-                    observer.unobserve(footer); // Rimuove l’osservatore dopo l’attivazione
+                    observer.unobserve(footer);
                 }
             });
         }, { threshold: 0.3 });
-
         observer.observe(footer);
     </script>
-
 </body>
 </html>
-
-
-
