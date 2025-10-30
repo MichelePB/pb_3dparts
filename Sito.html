@@ -103,7 +103,7 @@
                     padding-left: 5px;
                 }
 
-        /* Centering the image in the menu */
+        /* Centraggio dell'immagine nel menù laterale */
         .menu-logo {
             display: flex;
             justify-content: center;
@@ -234,6 +234,49 @@
         color: black;
         gap: 10px;
     }
+
+    /* Contenitore dell’icona */
+    .social-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #E4405F;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 1000;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+
+    .social-icon img {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* --- VERSIONE MOBILE --- */
+    @media (max-width: 600px) {
+      .social-icon {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+      }
+
+      .social-icon img {
+        width: 26px;
+        height: 26px;
+      }
+    }
     </style>
 </head>
 <body>
@@ -319,7 +362,7 @@
                     <img src="Progettazione.png" height="160" alt="Progetti su richiesta">
                     <p>Richiedi il tuo prodotto interamente progettato per le tue esigenze!</p>
                 </div>
-            </a> <!-- Ho aggiunto la chiusura del tag <a> che mancava -->
+            </a>
 
             <!-- Coming Soon -->
             <a href="#coming-soon" class="clickable"> <!-- Ho aggiunto un link per coerenza con le altre card -->
@@ -344,6 +387,11 @@
             </a>
         </div>
     </footer>
+    
+    //Icona di instagram fissa in basso a dx
+    <a href="https://instagram.com/iltuoaccount" target="_blank" class="social-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
 
     <script>
         // Script per aprire/chiudere il menu
@@ -367,6 +415,7 @@
 
 </body>
 </html>
+
 
 
 
