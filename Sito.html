@@ -25,7 +25,7 @@
             text-align: center;
             padding: 30px 0;
             background-color: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
@@ -39,7 +39,7 @@
             color: #000;
         }
 
-        /* --- MENU HAMBURGER --- */
+        /* --- MENU LATERALE --- */
         .menu-btn {
             position: absolute;
             top: 40px;
@@ -63,7 +63,7 @@
             right: -300px;
             width: 250px;
             height: 100%;
-            background: linear-gradient(135deg, #5592d9, #2a5a9a);
+            background: linear-gradient(135deg, #5592d9 0%, #2a5a9a 100%);
             box-shadow: -5px 0 15px rgba(0,0,0,0.3);
             z-index: 1000;
             transition: 0.4s;
@@ -72,6 +72,17 @@
 
         .menu.active {
             right: 0;
+        }
+
+        .menu-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .menu-logo img {
+            width: 80px;
+            border-radius: 50%;
         }
 
         .menu ul {
@@ -154,6 +165,10 @@
             margin-bottom: 10px;
         }
 
+        .card p {
+            font-size: 16px;
+        }
+
         .clickable {
             text-decoration: none;
             color: inherit;
@@ -184,7 +199,7 @@
             margin-bottom: 20px;
         }
 
-        footer .social-links {
+        .social-links {
             display: flex;
             justify-content: center;
             gap: 40px;
@@ -192,7 +207,7 @@
             flex-wrap: wrap;
         }
 
-        footer .social-links a {
+        .social-links a {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -202,19 +217,18 @@
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        footer .social-links a:hover {
+        .social-links a:hover {
             color: #007bff;
             transform: translateY(-3px);
         }
 
-        footer .social-links img {
+        .social-links img {
             width: 36px;
             height: 36px;
-            vertical-align: middle;
             transition: transform 0.3s ease;
         }
 
-        footer .social-links img:hover {
+        .social-links img:hover {
             transform: scale(1.1);
         }
 
@@ -225,7 +239,7 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background: #fff;
+            background-color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -289,6 +303,9 @@
     </header>
 
     <div class="menu">
+        <div class="menu-logo">
+            <img src="pb_logoNObg.png" alt="Logo PB">
+        </div>
         <ul>
             <li><a href="peg.html">Peg</a></li>
             <li><a href="fluidi.html">Recupero fluidi</a></li>
@@ -392,7 +409,7 @@
             });
         });
 
-        // --- FADE-IN FOOTER ALLO SCROLL ---
+        // --- FOOTER FADE-IN ---
         const footer = document.querySelector('footer');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -404,5 +421,6 @@
         }, { threshold: 0.3 });
         observer.observe(footer);
     </script>
+
 </body>
 </html>
