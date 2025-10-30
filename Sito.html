@@ -129,14 +129,18 @@
     .intro {
       font-size: 18px;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
 
     .card-container, .bottom-cards {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
+      gap: 40px; /* 🔹 Spazio orizzontale e verticale tra le card */
+    }
+
+    .card-container {
+      margin-bottom: 70px; /* 🔹 Spazio tra il primo gruppo e il secondo */
     }
 
     .card {
@@ -151,7 +155,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 380px; /* 🔹 altezza uniforme */
+      height: 380px;
     }
 
     .card:hover {
@@ -187,7 +191,7 @@
       text-align: center;
       padding: 30px 20px;
       background: #fff;
-      margin-top: 40px;
+      margin-top: 60px;
       color: #111;
       opacity: 0;
       transform: translateY(30px);
@@ -270,6 +274,7 @@
       .card-container, .bottom-cards {
         flex-direction: column;
         align-items: center;
+        gap: 50px;
       }
 
       .card {
