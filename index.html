@@ -447,8 +447,21 @@
     observer.observe(footer);
   </script>
 
+  <script>
+    window.addEventListener("load", () => {
+    fetch("/api/dati")   // URL della tua API o file JSON
+      .then(r => r.json())
+      .then(data => {
+        console.log("Dati aggiornati:", data);
+        // aggiorna il DOM con i dati ricevuti
+      });
+    });
+  </script>
+
+
 </body>
 </html>
+
 
 
 
