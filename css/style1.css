@@ -7,4 +7,23 @@ body {
   color: #000;
 }
 
+<!-- Stili per la pagina HOME -->
+.home h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 48px;
+  color: #000;
+}
+
+<!-- Stili per le pagine PRODUCT CATEGORY -->
+.productCategory h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+<!-- Stili per le pagine PRODUCT -->
+.product h1 {
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 10px;
+  color: #000;
+}
 
