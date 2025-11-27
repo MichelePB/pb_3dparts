@@ -13,12 +13,16 @@
     <meta name="apple-mobile-web-app-title" content="pb 3dparts" />
     <link rel="manifest" href="favicon/site.webmanifest" />
     
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Impianto LED Ciao</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
+
+    <!-- ⭐ Fancybox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+
     <style>
         body {
             margin: 0;
@@ -35,69 +39,67 @@
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            margin-top: 30px;
-            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .header {
             text-align: center;
-            padding: 20px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #eee;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .header h1 {
             font-family: 'Orbitron', sans-serif;
             color: #000;
-            margin-bottom: 10px;
-        }
-
-        .header h2 {
-            color: #555;
-            font-weight: normal;
+            margin-bottom: 5px;
+            font-size: 28px;
         }
 
         .product-container {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             margin-bottom: 30px;
         }
 
         .product-image {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
             text-align: center;
         }
 
         .product-image img {
-            max-width: 100%;
-            border-radius: 10px;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 12px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             cursor: pointer;
             transition: transform 0.3s;
         }
 
         .product-image img:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
 
         .product-info {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
         }
 
         .product-title {
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 12px;
             color: #333;
         }
 
         .product-description {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.6;
+            font-size: 16px;
         }
 
         .product-price {
@@ -105,6 +107,7 @@
             font-weight: bold;
             color: #2a5a9a;
             margin: 25px 0;
+            text-align: center;
         }
 
         .back-arrow {
@@ -113,6 +116,7 @@
             text-decoration: none;
             color: #2a5a9a;
             font-weight: bold;
+            font-size: 16px;
         }
 
         .back-arrow::before {
@@ -120,66 +124,41 @@
             margin-right: 5px;
         }
 
-        /* Lightbox Stili */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            text-align: center;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            margin: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .lightbox img {
-            max-height: 80vh;
-            max-width: 80vw;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.6);
-        }
-
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .lightbox-caption {
-            color: white;
-            margin-top: 15px;
-            font-size: 18px;
-        }
-
+        /* 📱 MIGLIORIE MOBILE */
         @media (max-width: 768px) {
-            .product-container {
-                flex-direction: column;
+            .container {
+                padding: 15px;
             }
-            
-            .lightbox img {
-                max-width: 95vw;
-                max-height: 80vh;
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .product-image img {
+                max-width: 95%;
+            }
+
+            .product-title {
+                font-size: 20px;
+            }
+
+            .product-description {
+                font-size: 15px;
+            }
+
+            .product-price {
+                font-size: 24px;
+            }
+
+            .back-arrow {
+                font-size: 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+
         <!-- Freccia per tornare indietro -->
         <a href="fanali.html" class="back-arrow">Torna ai prodotti</a>
 
@@ -191,67 +170,56 @@
         <!-- Contenuto prodotto -->
         <div class="product-container">
             <div class="product-image">
-                <img src="img/Impianto_LED.png" alt="Impianto LED Ciao" 
-                     onclick="openLightbox('img/Impianto_LED.png', 'Impianto elettrico a LED per Ciao/Bravo')">
+
+                <!-- ⭐ Fancybox -->
+                <a data-fancybox="gallery" 
+                   data-caption="Impianto elettrico a LED per Ciao/Bravo" 
+                   href="img/Impianto_LED.png">
+                    <img src="img/Impianto_LED.png" alt="Impianto LED Ciao">
+                </a>
+
                 <p class="product-description">Impianto elettrico a LED per Ciao/Bravo</p>
             </div>
             
             <div class="product-info">
                 <h3 class="product-title">Caratteristiche</h3>
                 <p class="product-description">
-                  MANCANTE: Inserire qua la descrizione con le caratteristiche
+                    MANCANTE: Inserire qua la descrizione con le caratteristiche
                 </p>
                 
                 <h3 class="product-title">Specifiche tecniche</h3>
                 <ul class="product-description">
                     <li>Materiale: PLA</li>
-                    <!--<li>Dimensioni: XX</li>-->
                     <li>Peso: XXg</li>
                     <li>Colori disponibili: Nero, Rosso, Arancione, Bianco, Blu, Verde, Giallo</li>
                 </ul>
                 
-                <div class="product-price">€40,00</div>
+                <div class="product-price">€50,00</div>
             </div>
         </div>
     </div>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <img id="lightbox-img" src="" alt="">
-            <p id="lightbox-caption" class="lightbox-caption"></p>
-        </div>
-    </div>
+    <!-- ⭐ Fancybox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
     <script>
-        // Funzione per aprire il lightbox
-        function openLightbox(imageSrc, caption) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxCaption = document.getElementById('lightbox-caption');
-            
-            lightbox.style.display = 'block';
-            lightboxImg.src = imageSrc;
-            lightboxCaption.textContent = caption;
-            
-            // Blocca lo scroll della pagina
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Funzione per chiudere il lightbox
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Chiudi il lightbox con il tasto ESC
-        document.onkeydown = function(evt) {
-            evt = evt || window.event;
-            if (evt.key === "Escape") {
-                closeLightbox();
+        // ⭐ Attivazione Fancybox ottimizzata per mobile
+        Fancybox.bind('[data-fancybox="gallery"]', {
+            Dots: true,
+            Thumbs: false,
+            dragToClose: true,
+            animated: true,
+            idle: false,
+            zoom: true,
+            Toolbar: {
+                display: ["close"],
+            },
+            Carousel: {
+                transition: "slide",
+                friction: 0.9, // miglior scorrimento su smartphone
             }
-        };
+        });
     </script>
+
 </body>
 </html>
