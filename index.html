@@ -1,209 +1,238 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pb_3dparts</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pb_3dparts</title>  
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="pb 3dparts" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
 
-  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
-  <link rel="shortcut icon" href="favicon/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="pb 3dparts" />
-  <link rel="manifest" href="favicon/site.webmanifest" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  
-  <style>
-    /* --- STILI GENERALI --- */
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #f0f2f0, #000c40);
-      color: #000;
-      overflow-x: hidden;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
-    header {
-      text-align: center;
-      padding: 30px 0;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      position: relative;
-    }
+    <style>
+      /* --- STILI GENERALI --- */
+      body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to right, #f0f2f0, #000c40);
+        color: #000;
+        overflow-x: hidden;
+      }
+      
+      /* --- HEADER CAROSELLO --- */
+      header {
+        text-align: center;
+        padding: 60px 0;
+        position: relative;
+        height: 250px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: #000;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 
-    header img { width: 100px; }
+        -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      }
 
-    header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 48px;
-      color: #000;
-      margin: 10px 0 0 0;
-    }
+      /* Contenitore scorrimento - Aggiornato per 6 immagini */
+      .slider-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 600%; /* 6 immagini = 600% */
+        height: 100%;
+        display: flex;
+        z-index: 0;
+        animation: slideRotation 18s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+      }
 
-    /* --- MENU LATERALE --- */
-    .menu-btn {
-      position: absolute;
-      top: 40px;
-      right: 30px;
-      cursor: pointer;
-      z-index: 1001;
-    }
+      .slider-container img {
+        width: calc(100% / 6); 
+        height: 100%;
+        /* Cambiato da cover a contain per non tagliare l'immagine */
+        object-fit: contain; 
+        opacity: 0.8; /* Aumentata leggermente per vederle meglio */
+        /* Colore di sfondo per riempire i vuoti laterali dell'immagine se necessario */
+        background-color: #000; 
+      }
 
-    .menu-btn span {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background: #000;
-      margin: 6px 0;
-      transition: 0.4s;
-    }
+      /* Keyframes aggiornati per 6 immagini */
+      @keyframes slideRotation {
+        0%, 13% { left: 0%; }
+        16%, 30% { left: -100%; }
+        33%, 46% { left: -200%; }
+        50%, 63% { left: -300%; }
+        66%, 80% { left: -400%; }
+        83%, 96% { left: -500%; }
+        100% { left: 0%; }
+      }
 
-    .menu {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 250px;
-      height: 100%;
-      background: linear-gradient(135deg, #5592d9 0%, #2a5a9a 100%);
-      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-      z-index: 1000;
-      transition: 0.4s;
-      padding-top: 80px;
-    }
+      .header-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to bottom, 
+            rgba(0,0,0,0) 0%, 
+            rgba(240, 242, 240, 0.9) 100%); 
+        z-index: 1;
+      }
 
-    .menu.active { right: 0; }
+      header img, header h1, .menu-btn {
+        position: relative;
+        z-index: 5; 
+      }
 
-    .menu-logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+      header img { width: 110px; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
 
-    .menu-logo img {
-      width: 80px;
-      border-radius: 50%;
-    }
+      header h1 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 42px;
+        color: #000;
+        text-shadow: 0px 0px 15px rgba(255,255,255,0.7);
+        margin: 10px 0 0 0;
+      }
 
-    .menu ul { list-style: none; padding: 0; margin: 0; }
+      /* --- MENU LATERALE --- */
+      .menu-btn {
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        cursor: pointer;
+        z-index: 1001;
+      }
+      
+      .menu-btn span { 
+        display: block; 
+        width: 30px; 
+        height: 3px; 
+        background: #000; 
+        margin: 6px 0; 
+        transition: 0.4s; 
+      }
 
-    .menu li {
-      padding: 15px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
+      /* Trasformazione in X quando attivo */
+      .menu-btn.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-6px, 6px);
+        background: #fff; /* Diventa bianca per vedersi sul menu blu/nero */
+      }
+      .menu-btn.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-btn.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -6px);
+        background: #fff;
+      }
 
-    .menu a {
-      text-decoration: none;
-      color: white;
-      font-size: 16px;
-      display: block;
-      transition: 0.3s;
-    }
+      .menu { 
+        position: fixed; 
+        top: 0; 
+        right: -300px; 
+        width: 250px; 
+        height: 100%; 
+        background: linear-gradient(135deg, #5592d9 0%, #2a5a9a 100%); 
+        z-index: 1000; 
+        transition: 0.4s; 
+        padding-top: 80px; 
+      }
+      
+      .menu.active { right: 0; }
+      .menu-logo { 
+        display: flex; 
+        justify-content: center; 
+        margin-bottom: 20px; 
+      }
+      .menu-logo img { 
+        width: 80px; 
+        border-radius: 50%; 
+      }
+      .menu ul { 
+        list-style: none; 
+        padding: 0; 
+        margin: 0;
+      }
 
-    .menu a:hover {
-      color: #e0e0e0;
-      padding-left: 5px;
-    }
+      .menu li { 
+        padding: 15px 20px; 
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+      }
+      .menu a { 
+        text-decoration: none; 
+        color: white; 
+        display: block; 
+        font-weight: 600; 
+      }
 
-    .menu-btn.active span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 6px); background: white; }
-    .menu-btn.active span:nth-child(2) { opacity: 0; }
-    .menu-btn.active span:nth-child(3) { transform: rotate(45deg) translate(-6px, -6px); background: white; }
+      /* --- CONTENUTO CARDS --- */
+      .content { 
+        padding: 40px 20px; 
+        max-width: 1200px; 
+        margin: auto; 
+      }
+      .intro { 
+        font-size: 20px; 
+        text-align: center; 
+        margin-bottom: 40px; 
+      }
+      .card-container, .bottom-cards { 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 40px; 
+        margin-bottom: 40px; 
+      }
 
-    /* --- CONTENUTO CARDS --- */
-    .content {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        width: 280px;
+        border-radius: 15px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.15);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 380px;
+        position: relative; 
+        overflow: hidden;   
+      }
 
-    .intro {
-      font-size: 20px;
-      text-align: center;
-      margin-bottom: 40px;
-    }
+      .card:hover { 
+        transform: translateY(-5px); 
+      }
+      .card img { width: 100%; 
+        height: 160px; 
+        object-fit: contain; 
+        border-radius: 10px; 
+      }
+      .card h2 { 
+        font-size: 22px; 
+        z-index: 2; 
+      }
+      .card p { 
+        font-size: 15px; 
+        z-index: 2; 
+      }
 
-    .card-container, .bottom-cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
+      #fanali-card::before {
+        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-image: url('img/FanaleLED_back_3.4.jpeg');
+        background-size: cover; background-position: center; opacity: 0.6; z-index: 1;
+      }
+      #fanali-card h2, #fanali-card p { position: relative; z-index: 2; text-shadow: 0 0 10px white; }
 
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      width: 280px;
-      border-radius: 15px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.15);
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; /* Mantiene titolo in alto e testo in basso */
-      height: 380px;
-      position: relative; 
-      overflow: hidden;   
-    }
+      .clickable { text-decoration: none; color: inherit; }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .card h2 { font-size: 22px; margin: 10px 0; z-index: 2; position: relative; }
-    .card p { font-size: 15px; line-height: 1.4; z-index: 2; position: relative; }
-
-    /* --- SPECIFICO CARD FANALI (BACKGROUND) --- */
-    #fanali-card {
-      background: #fff; 
-    }
-
-    #fanali-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('img/FanaleLED_back_3.4.jpeg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.6; /* Opacità al 60% */
-      z-index: 1; /* Sta dietro al testo (che ha z-index 2) */
-    }
-
-    /* Migliora il contrasto del testo sulla foto dei fanali */
-    #fanali-card h2, #fanali-card p {
-      color: #000;
-      /* Un leggero bagliore bianco aiuta la lettura se la foto è scura */
-      text-shadow: 0px 0px 10px rgba(255,255,255,0.9);
-      font-weight: 600; /* Testo leggermente più marcato per la leggibilità */
-    }
-
-    .clickable { text-decoration: none; color: inherit; }
-
-    /* --- FOOTER --- */
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      background: #fff;
-      margin-top: 60px;
-      color: #111;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    footer.visible { opacity: 1; transform: translateY(0); }
-
-    .social-links {
+      footer { text-align: center; padding: 30px; background: #fff; margin-top: 60px; opacity: 0; transition: 1s; }
+      footer.visible { opacity: 1; transform: translateY(0); }
+      .social-links {
       display: flex;
       justify-content: center;
       gap: 40px;
@@ -245,102 +274,107 @@
     /* --- RESPONSIVE --- */
     @media (max-width: 750px) {
       .card-container, .bottom-cards { flex-direction: column; align-items: center; gap: 30px; }
-      .card { width: 90%; height: auto; min-height: 320px; }
+      .card { width: 90%; height: auto; min-height: 300px; }
       header h1 { font-size: 32px; }
     }
   </style>
 </head>
 
 <body>
+    <header>
+      <div class="slider-container">
+        <img src="img/carosello_index/Beta_benzinaio.jpeg" alt="Slide 1">
+        <img src="img/carosello_index/Brake_cooler.jpeg" alt="Slide 2">
+        <img src="img/carosello_index/HRC_parapignone.jpeg" alt="Slide 3">
+        <img src="img/carosello_index/Portachiavi_KTM.jpeg" alt="Slide 4">
+        <img src="img/carosello_index/Portachiavi_PB.jpeg" alt="Slide 5">
+        <img src="img/carosello_index/Tamponi_honda.jpeg" alt="Slide 6">
+      </div>
 
-  <header>
-    <img src="img/pb_logo.png" alt="Logo PB">
-    <h1>pb_3dparts</h1>
+      <div class="header-overlay"></div>
 
-    <div class="menu-btn">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </header>
-
-  <div class="menu">
-    <div class="menu-logo">
       <img src="img/pb_logo.png" alt="Logo PB">
-    </div>
-    <ul>
-      <li><a href="peg.html">Peg</a></li>
-      <li><a href="fluidi.html">Recupero fluidi</a></li>
-      <li><a href="portachiavi.html">Portachiavi</a></li>
-      <li><a href="fanali.html">Fanali</a></li>
-      <li><a href="AM6.html">Componenti per AM6</a></li>
-      <li><a href="ProgettazioneSuRichiesta.html">Progettazione su richiesta</a></li>
-      <li><a href="#footer">Contatti</a></li>
-    </ul>
-  </div>
+      <h1>pb_3dparts</h1>
 
-  <div class="content">
-    <div class="intro">Personalizza la tua moto con gli accessori che preferisci</div>
+      <div class="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
 
-    <div class="card-container">
-      <a href="peg.html" class="clickable">
-        <div class="card">
-          <h2>Peg moto</h2>
-          <img src="img/Tamponi_copertina.png" alt="Tamponi moto">
-          <p>Scegli il prodotto più adatto a te e alla tua moto</p>
-        </div>
-      </a>
-
-      <a href="fluidi.html" class="clickable">
-        <div class="card">
-          <h2>Recupero fluidi</h2>
-          <img src="img/Fluidi_copertina.png" alt="Recupero fluidi">
-          <p>Pratico serbatoio per il recupero dei fluidi della tua moto</p>
-        </div>
-      </a>
-
-      <a href="portachiavi.html" class="clickable">
-        <div class="card">
-          <h2>Portachiavi</h2>
-          <img src="img/Portachiavi_copertina.png" alt="Portachiavi moto">
-          <p>Design personalizzato per un tocco unico alle tue chiavi</p>
-        </div>
-      </a>
+    <div class="menu">
+      <div class="menu-logo">
+        <img src="img/pb_logo.png" alt="Logo PB">
+      </div>
+      <ul>
+        <li><a href="peg.html">Peg</a></li>
+        <li><a href="fluidi.html">Recupero fluidi</a></li>
+        <li><a href="portachiavi.html">Portachiavi</a></li>
+        <li><a href="fanali.html">Fanali</a></li>
+        <li><a href="AM6.html">Componenti per AM6</a></li>
+        <li><a href="ProgettazioneSuRichiesta.html">Progettazione su richiesta</a></li>
+        <li><a href="#footer">Contatti</a></li>
+      </ul>
     </div>
 
-    <div class="bottom-cards">
-      <a href="fanali.html" class="clickable">
-        <div class="card" id="fanali-card">
-          <h2>Fanali</h2>
-          <p>Proteggi e personalizza i fanali della tua moto con stile</p>
+    <div class="content">
+        <div class="intro">Personalizza la tua moto con gli accessori che preferisci</div>
+        <div class="card-container">
+          <a href="peg.html" class="clickable">
+            <div class="card">
+              <h2>Peg moto</h2>
+              <img src="img/Tamponi_copertina.png" alt="Tamponi moto">
+              <p>Scegli il prodotto più adatto a te e alla tua moto</p>
+            </div>
+          </a>
+          <a href="fluidi.html" class="clickable">
+            <div class="card">
+              <h2>Recupero fluidi</h2>
+              <img src="img/Fluidi_copertina.png" alt="Recupero fluidi">
+              <p>Pratico serbatoio per il recupero dei fluidi della tua moto</p>
+            </div>
+          </a>
+          <a href="portachiavi.html" class="clickable">
+            <div class="card">
+              <h2>Portachiavi</h2>
+              <img src="img/Portachiavi_copertina.png" alt="Portachiavi moto">
+              <p>Design personalizzato per un tocco unico alle tue chiavi</p>
+            </div>
+          </a>
         </div>
-      </a>
+  
+        <div class="bottom-cards">
+          <a href="fanali.html" class="clickable">
+            <div class="card" id="fanali-card">
+              <h2>Fanali</h2>
+              <p>Proteggi e personalizza i fanali della tua moto con stile</p>
+            </div>
+          </a>
+          <a href="AM6.html" class="clickable">
+            <div class="card">
+              <h2>Componenti per AM6</h2>
+              <img src="img/Tappo_mixer_AM6 - 1.png" alt="Componenti per AM6">
+              <p>Scegli tra una vasta gamma di prodotti per il tuo AM6!</p>
+            </div>
+          </a>
+          <a href="ProgettazioneSuRichiesta.html" class="clickable">
+            <div class="card">
+              <h2>Progettazione su richiesta</h2>
+              <img src="img/Progettazione.png" alt="Progetti su richiesta">
+              <p>Richiedi il tuo prodotto interamente progettato per le tue esigenze!</p>
+            </div>
+          </a>
 
-      <a href="AM6.html" class="clickable">
-        <div class="card">
-          <h2>Componenti per AM6</h2>
-          <img src="img/Tappo_mixer_AM6 - 1.png" alt="Componenti per AM6">
-          <p>Scegli tra una vasta gamma di prodotti per il tuo AM6!</p>
+          <a href="#coming-soon" class="clickable" style="cursor: default;">
+            <div class="card">
+              <h2>Coming soon!</h2>
+              <img src="img/Work_in_progress.png" alt="Presto in arrivo!">
+              <p>Stiamo lavorando a nuovi prodotti. Resta aggiornato!</p>
+            </div>
+          </a>
         </div>
-      </a>
-
-      <a href="ProgettazioneSuRichiesta.html" class="clickable">
-        <div class="card">
-          <h2>Progettazione su richiesta</h2>
-          <img src="img/Progettazione.png" alt="Progetti su richiesta">
-          <p>Richiedi il tuo prodotto interamente progettato per le tue esigenze!</p>
-        </div>
-      </a>
-
-      <a href="#coming-soon" class="clickable" style="cursor: default;">
-        <div class="card">
-          <h2>Coming soon!</h2>
-          <img src="img/Work_in_progress.png" alt="Presto in arrivo!">
-          <p>Stiamo lavorando a nuovi prodotti. Resta aggiornato!</p>
-        </div>
-      </a>
-    </div>
-  </div>
+      </div>
 
   <footer id="footer">
     <h3>Contattaci su</h3>
@@ -355,37 +389,34 @@
       </a>
     </div>
   </footer>
-
   <a href="https://www.instagram.com/pb_3dparts" target="_blank" class="social-icon">
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
   </a>
 
-  <script>
-    const menuBtn = document.querySelector('.menu-btn');
-    const menu = document.querySelector('.menu');
-
-    menuBtn.addEventListener('click', () => {
-      menuBtn.classList.toggle('active');
-      menu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuBtn.classList.remove('active');
-        menu.classList.remove('active');
+    <script>
+      // --- MENU MOBILE ---
+      const menuBtn = document.querySelector('.menu-btn');
+      const menu = document.querySelector('.menu');
+      
+      menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        menu.classList.toggle('active');
       });
-    });
 
-    const footer = document.querySelector('footer');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          footer.classList.add('visible');
-        }
+      // Chiudi menu se clicchi fuori o su un link
+      document.querySelectorAll('.menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuBtn.classList.remove('active');
+          menu.classList.remove('active');
+        });
       });
-    }, { threshold: 0.1 });
-    observer.observe(footer);
-  </script>
 
+      // --- ANIMAZIONE FOOTER ---
+      const footer = document.querySelector('footer');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) footer.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      observer.observe(footer);
+    </script>
 </body>
 </html>
