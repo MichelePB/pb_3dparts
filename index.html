@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>pb_3dparts</title>
 
-  <!-- Link per l'icona sulla tab -->
   <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
   <link rel="shortcut icon" href="favicon/favicon.ico" />
@@ -13,18 +12,17 @@
   <meta name="apple-mobile-web-app-title" content="pb 3dparts" />
   <link rel="manifest" href="favicon/site.webmanifest" />
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style1.css">
   
   <style>
-
+    /* --- STILI GENERALI --- */
     body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #f0f2f0, #000c40);
-  color: #000;
-}
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f0f2f0, #000c40);
+      color: #000;
+      overflow-x: hidden;
+    }
     
     header {
       text-align: center;
@@ -34,14 +32,13 @@
       position: relative;
     }
 
-    header img {
-      width: 100px;
-    }
+    header img { width: 100px; }
 
     header h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: 48px;
       color: #000;
+      margin: 10px 0 0 0;
     }
 
     /* --- MENU LATERALE --- */
@@ -75,9 +72,7 @@
       padding-top: 80px;
     }
 
-    .menu.active {
-      right: 0;
-    }
+    .menu.active { right: 0; }
 
     .menu-logo {
       display: flex;
@@ -90,11 +85,7 @@
       border-radius: 50%;
     }
 
-    .menu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+    .menu ul { list-style: none; padding: 0; margin: 0; }
 
     .menu li {
       padding: 15px 20px;
@@ -114,21 +105,11 @@
       padding-left: 5px;
     }
 
-    .menu-btn.active span:nth-child(1) {
-      transform: rotate(-45deg) translate(-6px, 6px);
-      background: white;
-    }
+    .menu-btn.active span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 6px); background: white; }
+    .menu-btn.active span:nth-child(2) { opacity: 0; }
+    .menu-btn.active span:nth-child(3) { transform: rotate(45deg) translate(-6px, -6px); background: white; }
 
-    .menu-btn.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-btn.active span:nth-child(3) {
-      transform: rotate(45deg) translate(-6px, -6px);
-      background: white;
-    }
-
-    /* --- CONTENUTO --- */
+    /* --- CONTENUTO CARDS --- */
     .content {
       padding: 40px 20px;
       max-width: 1200px;
@@ -145,11 +126,8 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 40px; /* Spazio orizzontale e verticale tra le card */
-    }
-
-    .card-container {
-      margin-bottom: 70px; /* Spazio tra il primo gruppo e il secondo */
+      gap: 40px;
+      margin-bottom: 40px;
     }
 
     .card {
@@ -165,6 +143,8 @@
       flex-direction: column;
       justify-content: space-between;
       height: 380px;
+      position: relative; /* Importante per lo sfondo */
+      overflow: hidden;   /* Importante per i bordi dello sfondo */
     }
 
     .card:hover {
@@ -180,20 +160,33 @@
       margin-bottom: 15px;
     }
 
-    .card h2 {
-      font-size: 20px;
-      margin: 10px 0;
+    .card h2 { font-size: 22px; margin: 10px 0; z-index: 2; }
+    .card p { font-size: 15px; line-height: 1.4; z-index: 2; }
+
+    /* --- SPECIFICO CARD FANALI (BACKGROUND) --- */
+    #fanali-card {
+      background: #fff; /* Base bianca se l'immagine carica lentamente */
+      justify-content: center; /* Centra il testo verticalmente */
     }
 
-    .card p {
-      font-size: 15px;
-      line-height: 1.4;
+    #fanali-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('img/FanaleLED_back_3.4.jpeg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.6; /* Opacità al 60% */
+      z-index: 1;
     }
 
-    .clickable {
-      text-decoration: none;
-      color: inherit;
+    /* Per migliorare la leggibilità del testo sopra lo sfondo dei fanali */
+    #fanali-card h2, #fanali-card p {
+      color: #000;
+      text-shadow: 0px 0px 8px rgba(255,255,255,0.8);
     }
+
+    .clickable { text-decoration: none; color: inherit; }
 
     /* --- FOOTER --- */
     footer {
@@ -207,16 +200,7 @@
       transition: opacity 1s ease, transform 1s ease;
     }
 
-    footer.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer h3 {
-      font-weight: 600;
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
+    footer.visible { opacity: 1; transform: translateY(0); }
 
     .social-links {
       display: flex;
@@ -232,24 +216,11 @@
       gap: 10px;
       text-decoration: none;
       color: #222;
-      font-size: 16px;
-      transition: color 0.3s ease, transform 0.3s ease;
+      transition: 0.3s;
     }
 
-    .social-links a:hover {
-      color: #007bff;
-      transform: translateY(-3px);
-    }
-
-    .social-links img {
-      width: 36px;
-      height: 36px;
-      transition: transform 0.3s ease;
-    }
-
-    .social-links img:hover {
-      transform: scale(1.1);
-    }
+    .social-links a:hover { color: #007bff; transform: translateY(-3px); }
+    .social-links img { width: 36px; height: 36px; }
 
     /* --- ICONA INSTAGRAM FISSA --- */
     .social-icon {
@@ -264,52 +235,17 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 1000;
+      transition: 0.2s;
     }
+    .social-icon:hover { transform: scale(1.1); }
+    .social-icon img { width: 38px; height: 38px; }
 
-    .social-icon:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-    }
-
-    .social-icon img {
-      width: 38px;
-      height: 38px;
-    }
-
+    /* --- RESPONSIVE --- */
     @media (max-width: 750px) {
-      .card-container, .bottom-cards {
-        flex-direction: column;
-        align-items: center;
-        gap: 50px;
-      }
-
-      .card {
-        width: 90%;
-        height: auto;
-      }
-
-      header h1 {
-        font-size: 36px;
-      }
-
-      .menu-btn {
-        top: 30px;
-      }
-
-      .social-icon {
-        width: 70px;
-        height: 70px;
-        bottom: 15px;
-        right: 15px;
-      }
-
-      .social-icon img {
-        width: 46px;
-        height: 46px;
-      }
+      .card-container, .bottom-cards { flex-direction: column; align-items: center; gap: 30px; }
+      .card { width: 90%; height: auto; min-height: 300px; }
+      header h1 { font-size: 32px; }
     }
   </style>
 </head>
@@ -318,7 +254,7 @@
 
   <header>
     <img src="img/pb_logo.png" alt="Logo PB">
-    <h1><b>pb_3dparts</b></h1>
+    <h1>pb_3dparts</h1>
 
     <div class="menu-btn">
       <span></span>
@@ -338,14 +274,12 @@
       <li><a href="fanali.html">Fanali</a></li>
       <li><a href="AM6.html">Componenti per AM6</a></li>
       <li><a href="ProgettazioneSuRichiesta.html">Progettazione su richiesta</a></li>
-      <li><a href="#contatti">Contatti</a></li>
+      <li><a href="#footer">Contatti</a></li>
     </ul>
   </div>
 
   <div class="content">
-    <div class="intro">
-      Personalizza la tua moto con gli accessori che preferisci
-    </div>
+    <div class="intro">Personalizza la tua moto con gli accessori che preferisci</div>
 
     <div class="card-container">
       <a href="peg.html" class="clickable">
@@ -375,10 +309,8 @@
 
     <div class="bottom-cards">
       <a href="fanali.html" class="clickable">
-        <div class="card">
+        <div class="card" id="fanali-card">
           <h2>Fanali</h2>
-          <!-- img src="Copertina_griglie_card.png" alt="Fanali" -->
-          <img src="img/FanaleLED_back_3.4.jpeg" alt="Fanali" width="500" height="700">
           <p>Proteggi e personalizza i fanali della tua moto con stile</p>
         </div>
       </a>
@@ -399,7 +331,7 @@
         </div>
       </a>
 
-      <a href="#coming-soon" class="clickable" cursor="default">
+      <a href="#coming-soon" class="clickable" style="cursor: default;">
         <div class="card">
           <h2>Coming soon!</h2>
           <img src="img/Work_in_progress.png" alt="Presto in arrivo!">
@@ -437,6 +369,7 @@
       menu.classList.toggle('active');
     });
 
+    // Chiude il menu quando si clicca un link
     document.querySelectorAll('.menu a').forEach(link => {
       link.addEventListener('click', () => {
         menuBtn.classList.remove('active');
@@ -444,45 +377,17 @@
       });
     });
 
-    // --- FOOTER FADE-IN ---
+    // --- ANIMAZIONE FOOTER ---
     const footer = document.querySelector('footer');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           footer.classList.add('visible');
-          observer.unobserve(footer);
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1 });
     observer.observe(footer);
-    
-    // --- FETCH DATI AGGIORNATI ---
-    window.addEventListener("load", () => {
-      fetch("/api/dati")   // URL della tua API o file JSON
-      .then(r => r.json())
-      .then(data => {
-        console.log("Dati aggiornati:", data);
-        // aggiorna il DOM con i dati ricevuti
-      });
-    });
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
