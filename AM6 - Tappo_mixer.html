@@ -36,10 +36,10 @@
 
         .product-container {
             display: flex; flex-wrap: wrap; gap: 30px;
-            align-items: center; justify-content: center; margin-bottom: 30px;
+            align-items: flex-start; justify-content: center; margin-bottom: 30px;
         }
 
-        .product-image { flex: 1; min-width: 300px; text-align: center; }
+        .product-image { flex: 1; min-width: 300px; text-align: center; position: sticky; top: 20px; }
         .product-image img {
             max-width: 100%; border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -48,8 +48,33 @@
         .product-image img:hover { transform: scale(1.02); }
 
         .product-info { flex: 1; min-width: 300px; }
-        .product-title { font-size: 24px; margin-bottom: 15px; color: #333; }
+        .product-title { font-size: 24px; margin-bottom: 10px; color: #333; }
         .product-description { margin-bottom: 20px; line-height: 1.6; }
+
+        /* --- STILE QUADRATI FINITURE --- */
+        .bed-options-title {
+            font-size: 18px; font-weight: 600; margin-top: 25px; margin-bottom: 15px; color: #333;
+        }
+
+        .bed-options-grid {
+            display: flex; gap: 15px; margin-bottom: 25px;
+        }
+
+        .bed-item {
+            flex: 1; text-align: center;
+            border: 2px solid #444; /* Bordo grigio scuro */
+            border-radius: 15px; padding: 10px;
+            background: #fff; transition: transform 0.2s;
+        }
+
+        .bed-item img {
+            width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+            border-radius: 10px; margin-bottom: 8px;
+        }
+
+        .bed-item h4 { font-size: 13px; margin: 5px 0; color: #000; text-transform: uppercase; }
+        .bed-item p { font-size: 11px; margin: 0; color: #666; line-height: 1.2; }
+
         .product-price { font-size: 28px; font-weight: bold; color: #2a5a9a; margin: 25px 0; }
 
         .back-arrow {
@@ -63,7 +88,7 @@
             display: none; position: fixed; z-index: 9999;
             top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.92); user-select: none;
-            touch-action: none; /* Impedisce lo scroll della pagina durante lo swipe */
+            touch-action: none;
         }
 
         .lightbox-content {
@@ -93,29 +118,17 @@
         .prev { left: 10px; }
         .next { right: 10px; }
 
-        /* --- PALLINI (DOTS) RIDOTTI --- */
-        .dots-container {
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-        }
-        .dot {
-            height: 8px; width: 8px; /* Dimensione ridotta */
-            background-color: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .dot.active {
-            background-color: white;
-            transform: scale(1.2);
-        }
+        .dots-container { margin-top: 15px; display: flex; justify-content: center; gap: 8px; }
+        .dot { height: 8px; width: 8px; background-color: rgba(255,255,255,0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .dot.active { background-color: white; transform: scale(1.2); }
 
         .lightbox-caption { color: white; margin-top: 15px; font-size: 16px; opacity: 0.9; }
 
         @media (max-width: 768px) {
-            .nav-arrow { display: none; } /* Nascondiamo le frecce su mobile per pulizia, si usa lo swipe */
+            .nav-arrow { display: none; }
+            .bed-options-grid { gap: 10px; }
+            .bed-item h4 { font-size: 11px; }
+            .bed-item p { font-size: 10px; }
         }
     </style>
 </head>
@@ -137,6 +150,26 @@
             <div class="product-info">
                 <h3 class="product-title">Caratteristiche</h3>
                 <p class="product-description">Tappo miscelatore realizzato in PLA, disponibile in vari colori.</p>
+
+                <div class="bed-options-title">Finiture Disponibili</div>
+                <div class="bed-options-grid">
+                    <div class="bed-item">
+                        <img src="img/Bed_CF.png" alt="Carbon Fiber">
+                        <h4>Carbon Fiber</h4>
+                        <p>Effetto fibra di carbonio lucida</p>
+                    </div>
+                    <div class="bed-item">
+                        <img src="img/Bed_TRI.png" alt="Triangle">
+                        <h4>Triangle</h4>
+                        <p>Trama geometrica a triangoli</p>
+                    </div>
+                    <div class="bed-item">
+                        <img src="img/Bed_PEI.png" alt="PEI">
+                        <h4>Satin PEI</h4>
+                        <p>Texture sabbiata professionale</p>
+                    </div>
+                </div>
+
                 <div class="product-price">€6,00</div>
                 <div><h3>Contattaci su Instagram!</h3></div>
             </div>
@@ -160,7 +193,6 @@
         const gallery = [
             { src: "img/Tappo_mixer_AM6 - 1.png", title: "Tappo miscelatore" },
             { src: "img/Tappo_mixer_AM6 - 2.png", title: "Tappo miscelatore" }
-            //{ src: "img/immagine3.png", title: "Tappo miscelatore - Vista 3" }
         ];
 
         let currentIndex = 0;
@@ -209,29 +241,17 @@
             });
         }
 
-        // --- GESTIONE SWIPE ---
+        // SWIPE
         const lightboxEl = document.getElementById('lightbox');
-
-        lightboxEl.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, false);
-
-        lightboxEl.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleGesture();
-        }, false);
+        lightboxEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+        lightboxEl.addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleGesture(); }, false);
 
         function handleGesture() {
-            const threshold = 50; // pixel minimi per attivare lo swipe
-            if (touchEndX < touchStartX - threshold) {
-                changeImage(1); // Swipe verso sinistra -> immagine successiva
-            }
-            if (touchEndX > touchStartX + threshold) {
-                changeImage(-1); // Swipe verso destra -> immagine precedente
-            }
+            const threshold = 50;
+            if (touchEndX < touchStartX - threshold) changeImage(1);
+            if (touchEndX > touchStartX + threshold) changeImage(-1);
         }
 
-        // Gestione tastiera
         document.onkeydown = function(evt) {
             const isVisible = document.getElementById('lightbox').style.display === 'block';
             if (isVisible) {
