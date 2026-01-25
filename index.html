@@ -141,10 +141,10 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-between; /* Mantiene titolo in alto e testo in basso */
       height: 380px;
-      position: relative; /* Importante per lo sfondo */
-      overflow: hidden;   /* Importante per i bordi dello sfondo */
+      position: relative; 
+      overflow: hidden;   
     }
 
     .card:hover {
@@ -160,13 +160,12 @@
       margin-bottom: 15px;
     }
 
-    .card h2 { font-size: 22px; margin: 10px 0; z-index: 2; }
-    .card p { font-size: 15px; line-height: 1.4; z-index: 2; }
+    .card h2 { font-size: 22px; margin: 10px 0; z-index: 2; position: relative; }
+    .card p { font-size: 15px; line-height: 1.4; z-index: 2; position: relative; }
 
     /* --- SPECIFICO CARD FANALI (BACKGROUND) --- */
     #fanali-card {
-      background: #fff; /* Base bianca se l'immagine carica lentamente */
-      justify-content: center; /* Centra il testo verticalmente */
+      background: #fff; 
     }
 
     #fanali-card::before {
@@ -177,13 +176,15 @@
       background-size: cover;
       background-position: center;
       opacity: 0.6; /* Opacità al 60% */
-      z-index: 1;
+      z-index: 1; /* Sta dietro al testo (che ha z-index 2) */
     }
 
-    /* Per migliorare la leggibilità del testo sopra lo sfondo dei fanali */
+    /* Migliora il contrasto del testo sulla foto dei fanali */
     #fanali-card h2, #fanali-card p {
       color: #000;
-      text-shadow: 0px 0px 8px rgba(255,255,255,0.8);
+      /* Un leggero bagliore bianco aiuta la lettura se la foto è scura */
+      text-shadow: 0px 0px 10px rgba(255,255,255,0.9);
+      font-weight: 600; /* Testo leggermente più marcato per la leggibilità */
     }
 
     .clickable { text-decoration: none; color: inherit; }
@@ -244,7 +245,7 @@
     /* --- RESPONSIVE --- */
     @media (max-width: 750px) {
       .card-container, .bottom-cards { flex-direction: column; align-items: center; gap: 30px; }
-      .card { width: 90%; height: auto; min-height: 300px; }
+      .card { width: 90%; height: auto; min-height: 320px; }
       header h1 { font-size: 32px; }
     }
   </style>
@@ -360,7 +361,6 @@
   </a>
 
   <script>
-    // --- MENU MOBILE ---
     const menuBtn = document.querySelector('.menu-btn');
     const menu = document.querySelector('.menu');
 
@@ -369,7 +369,6 @@
       menu.classList.toggle('active');
     });
 
-    // Chiude il menu quando si clicca un link
     document.querySelectorAll('.menu a').forEach(link => {
       link.addEventListener('click', () => {
         menuBtn.classList.remove('active');
@@ -377,7 +376,6 @@
       });
     });
 
-    // --- ANIMAZIONE FOOTER ---
     const footer = document.querySelector('footer');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
