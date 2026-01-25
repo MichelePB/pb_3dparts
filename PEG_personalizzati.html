@@ -17,15 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            <script>
-              window.onload = function() {
-                // Ricarica una sola volta solo se non l'abbiamo già fatto
-            if (!window.location.href.includes("reloaded=true")) {
-          window.location.href = window.location.href + (window.location.href.includes("?") ? "&" : "?") + "reloaded=true";
-            }
-          };
-        </script>
+        .body {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
@@ -197,8 +189,8 @@
         <!-- Contenuto prodotto -->
         <div class="product-container">
             <div class="product-image">
-                <img src="PEG_sfuocati.png" alt="Tappo PEG" 
-                     onclick="openLightbox('PEG_sfuocati.png', 'PEG personalizzati')">
+                <img src="img/PEG_sfuocati.png" alt="Tappo PEG" 
+                     onclick="openLightbox('img/PEG_sfuocati.png', 'PEG personalizzati')">
             </div>
             
             <div class="product-info">
@@ -223,6 +215,13 @@
     </div>
 
     <script>
+        window.onload = function() {
+            // Ricarica una sola volta solo se non l'abbiamo già fatto
+            if (!window.location.href.includes("reloaded=true")) {
+          window.location.href = window.location.href + (window.location.href.includes("?") ? "&" : "?") + "reloaded=true";
+            }
+        };
+            
         // Funzione per aprire il lightbox
         function openLightbox(imageSrc, caption) {
             const lightbox = document.getElementById('lightbox');
