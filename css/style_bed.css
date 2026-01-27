@@ -7,10 +7,12 @@
 }
 
 .bed-item {
-    flex: 1; text-align: center;
+    flex: 1;
+    text-align: center;
     border: 1px solid #827e7e;
     border-radius: 15px; padding: 10px;
-    background: #fff; transition: transform 0.2s;
+    background: #fff;
+    transition: transform 0.2s;
 }
 .bed-item img {
     width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
@@ -21,8 +23,8 @@
 .bed-item p { font-size: 11px; margin: 0; color: #666; line-height: 1.2; }
 
 @media (max-width: 768px) {
-            .nav-arrow { display: none; }
-            .bed-options-grid { gap: 10px; }
-            .bed-item h4 { font-size: 11px; }
-            .bed-item p { font-size: 10px; }
-        }
+    .nav-arrow { display: none; }
+    .bed-options-grid { gap: 10px; }
+    .bed-item h4 { font-size: 11px; }
+    .bed-item p { font-size: 10px; }
+}

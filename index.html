@@ -15,6 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
+
+      html {scroll-behavior: smooth;}
+
       /* --- STILI GENERALI --- */
       body {
         margin: 0;
@@ -344,6 +347,34 @@
         entries.forEach(entry => { if (entry.isIntersecting) footer.classList.add('visible'); });
       }, { threshold: 0.1 });
       observer.observe(footer);
+
+// Seleziona tutti i link dentro il menu
+document.querySelectorAll('.menu a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    // 1. Chiudi il menu rimuovendo le classi active
+    menuBtn.classList.remove('active');
+    menu.classList.remove('active');
+
+    // 2. Se il link è un'ancora (inizia con #)
+    const href = link.getAttribute('href');
+    if (href.startsWith('#')) {
+      e.preventDefault(); // Impedisce lo scatto immediato
+      
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        // Aspetta un attimo che il menu inizi a chiudersi, poi scorri
+        setTimeout(() => {
+          targetElement.scrollIntoView({
+            behavior: 'smooth' // Scorrimento fluido
+          });
+        }, 300); // 300ms è il tempo della transizione CSS del tuo menu
+      }
+    }
+  });
+});
+
     </script>
   </body>
 </html>
