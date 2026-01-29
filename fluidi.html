@@ -1,271 +1,365 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recupero fluidi</title>
-    
-    <!-- Link per l'icona sulla tab -->
-    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
-    <link rel="shortcut icon" href="favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="pb 3dparts" />
-    <link rel="manifest" href="favicon/site.webmanifest" />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recupero fluidi</title>
+        
+        <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+        <link rel="shortcut icon" href="favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="pb 3dparts" />
+        <link rel="manifest" href="favicon/site.webmanifest" />
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #f0f2f0, #000c40);
-            color: black;
-        }
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(to right, #f0f2f0, #000c40);
+                color: black;
+            }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
+            .container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 15px;
+                box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
 
-        .header {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 30px;
-        }
+            .header {
+                text-align: center;
+                padding: 20px 0;
+                border-bottom: 1px solid #eee;
+                margin-bottom: 30px;
+            }
 
-        .header h1 {
-            font-family: 'Orbitron', sans-serif;
-            color: #000;
-            margin-bottom: 10px;
-        }
+            .header h1 {
+                font-family: 'Orbitron', sans-serif;
+                color: #000;
+                margin-bottom: 10px;
+            }
 
-        .header h2 {
-            color: #555;
-            font-weight: normal;
-        }
-
-        .product-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .product-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-
-        .product-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .product-image img:hover {
-            transform: scale(1.02);
-        }
-
-        .product-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .product-title {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .product-description {
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .product-price {
-            font-size: 28px;
-            font-weight: bold;
-            color: #2a5a9a;
-            margin: 25px 0;
-        }
-
-        .back-arrow {
-            display: inline-block;
-            margin-bottom: 20px;
-            text-decoration: none;
-            color: #2a5a9a;
-            font-weight: bold;
-        }
-
-        .back-arrow::before {
-            content: "←";
-            margin-right: 5px;
-        }
-
-        /* Lightbox Stili */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            text-align: center;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            margin: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .lightbox img {
-            max-height: 80vh;
-            max-width: 80vw;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.6);
-        }
-
-        .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .lightbox-caption {
-            color: white;
-            margin-top: 15px;
-            font-size: 18px;
-        }
-
-        @media (max-width: 768px) {
             .product-container {
-                flex-direction: column;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                align-items: flex-start;
+                justify-content: center;
+                margin-bottom: 30px;
             }
-            
+
+            .product-image {
+                flex: 1;
+                min-width: 300px;
+                text-align: center;
+                position: sticky;
+                top: 20px;
+            }
+
+            .product-image img {
+                max-width: 100%;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                cursor: pointer;
+                transition: transform 0.3s;
+            }
+
+            .product-image img:hover {
+                transform: scale(1.02);
+            }
+
+            .product-info {
+                flex: 1;
+                min-width: 300px;
+            }
+
+            .product-title {
+                font-size: 24px;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .product-description {
+                margin-bottom: 20px;
+                line-height: 1.6;
+            }
+
+            .product-price {
+                font-size: 28px;
+                font-weight: bold;
+                color: #2a5a9a;
+                margin: 25px 0;
+            }
+
+            .back-arrow {
+                display: inline-block;
+                margin-bottom: 20px;
+                text-decoration: none;
+                color: #2a5a9a;
+                font-weight: bold;
+            }
+
+            .back-arrow::before {
+                content: "←";
+                margin-right: 5px;
+            }
+
+            /* --- LIGHTBOX STILI AGGIORNATI --- */
+            .lightbox {
+                display: none;
+                position: fixed;
+                z-index: 9999;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.92);
+                user-select: none;
+                touch-action: none;
+            }
+
+            .lightbox-content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                width: 90%;
+                max-width: 800px;
+            }
+
             .lightbox img {
-                max-width: 95vw;
-                max-height: 80vh;
+                max-height: 70vh;
+                max-width: 100%;
+                border-radius: 8px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.6);
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Freccia per tornare indietro -->
-        <a href="index.html" class="back-arrow">Torna ai prodotti</a>
 
-        <!-- Intestazione -->
-        <div class="header">
-            <h1>Recupero fluidi</h1>
-        </div>
+            .close-lightbox {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                color: white;
+                font-size: 40px;
+                font-weight: bold;
+                cursor: pointer;
+                z-index: 10001;
+            }
 
-        <!-- Contenuto prodotto -->
-        <div class="product-container">
-            <div class="product-image">
-                <img src="img/Fluidi_copertina.png" alt="Recupero fluidi" 
-                     onclick="openLightbox('img/Fluidi_copertina.png', 'Recupero fluidi')">
-                <p class="product-description">Recupero fluidi in PLA con design personalizzato</p>
+            /* Frecce Navigazione */
+            .nav-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                color: white;
+                font-size: 40px;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 15px;
+                transition: 0.3s;
+                background: rgba(0,0,0,0.1);
+                border-radius: 5px;
+                z-index: 10000;
+            }
+            .nav-arrow:hover { background: rgba(255,255,255,0.2); }
+            .prev { left: 10px; }
+            .next { right: 10px; }
+
+            /* Puntini */
+            .dots-container {
+                margin-top: 15px;
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+            }
+            .dot {
+                height: 8px;
+                width: 8px;
+                background-color: rgba(255,255,255,0.3);
+                border-radius: 50%;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            .dot.active {
+                background-color: white;
+                transform: scale(1.2);
+            }
+
+            .lightbox-caption {
+                color: white;
+                margin-top: 15px;
+                font-size: 16px;
+                opacity: 0.9;
+            }
+
+            @media (max-width: 768px) {
+                .product-container { flex-direction: column; }
+                .product-image { position: relative; top: 0; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <a href="index.html" class="back-arrow">Torna ai prodotti</a>
+
+            <div class="header">
+                <h1>Recupero fluidi</h1>
             </div>
-            
-            <div class="product-info">
-                <h3 class="product-title">Caratteristiche</h3>
-                <p class="product-description">
-                    Recupero fluidi realizzato in PLA, disponibile con vari colori e loghi. 
-                    Design moderno per rendere più bella la tua moto, ma soprattutto indispensabili per non sporcare la moto.<br>
-                    Personalizzabile con logo, colore o testo a richiesta.
-                    Con il nostro kit, grazie allo sgancio rapido, puoi facilmente rimuovere il recupero fluidi e svuotarlo,
-                    lasciando la slitta fissa sul telaio della tua moto.
-                    Il kit comprende:<br>
-                    - 1 contenitore;<br>
-                    - 1 tappo per il contenitore<br>
-                    - 1 slitta da fissare sul telaio<br>
-                </p>
+
+            <div class="product-container">
+                <div class="product-image">
+                    <img src="img/Fluidi_copertina.png" alt="Recupero fluidi" onclick="openLightbox(0)">
+                    <p class="product-description">Recupero fluidi in PLA con design personalizzato</p>
+                </div>
                 
-                <h3 class="product-title">Specifiche tecniche</h3>
-                <ul class="product-description">
-                    <li>Materiale: PLA</li>
-                    <li>Dimensioni: D3,5cm x 4cm</li>
-                    <li>Peso: 40g</li>
-                    <li>Colori disponibili: Nero, Rosso, Arancione, Bianco <!--, Blu, Verde, Giallo --> </li>
-                </ul>
-                
-                <div class="product-price">€25,00</div>
-                <div>
-                  <h3>Contattaci su Instagram per il tuo recupero fluidi!</h3>
+                <div class="product-info">
+                    <h3 class="product-title">Caratteristiche</h3>
+                    <p class="product-description">
+                        Recupero fluidi realizzato in PLA, disponibile con vari colori e loghi. 
+                        Design moderno per rendere più bella la tua moto, ma soprattutto indispensabili per non sporcare la moto.<br>
+                        Personalizzabile con logo, colore o testo a richiesta.
+                        Con il nostro kit, grazie allo sgancio rapido, puoi facilmente rimuovere il recupero fluidi e svuotarlo,
+                        lasciando la slitta fissa sul telaio della tua moto.
+                        Il kit comprende:<br>
+                        - 1 contenitore;<br>
+                        - 1 tappo per il contenitore<br>
+                        - 1 slitta da fissare sul telaio<br>
+                    </p>
+                    
+                    <h3 class="product-title">Specifiche tecniche</h3>
+                    <ul class="product-description">
+                        <li>Materiale: PLA</li>
+                        <li>Dimensioni: D3,5cm x 4cm</li>
+                        <li>Peso: 40g</li>
+                        <li>Colori disponibili: Nero, Rosso, Arancione, Bianco</li>
+                    </ul>
+                    
+                    <div class="product-price">€25,00</div>
+                    <div>
+                    <h3>Contattaci su Instagram per il tuo recupero fluidi!</h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <img id="lightbox-img" src="" alt="">
-            <p id="lightbox-caption" class="lightbox-caption"></p>
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+            
+            <span class="nav-arrow prev" onclick="changeImage(-1, event)">&#10094;</span>
+            <span class="nav-arrow next" onclick="changeImage(1, event)">&#10095;</span>
+
+            <div class="lightbox-content" onclick="event.stopPropagation()">
+                <img id="lightbox-img" src="" alt="">
+                <p id="lightbox-caption" class="lightbox-caption"></p>
+                <div id="dots-container" class="dots-container"></div>
+            </div>
         </div>
-    </div>
 
-    <script>
-        // Funzione per aprire il lightbox
-        function openLightbox(imageSrc, caption) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxCaption = document.getElementById('lightbox-caption');
-            
-            lightbox.style.display = 'block';
-            lightboxImg.src = imageSrc;
-            lightboxCaption.textContent = caption;
-            
-            // Blocca lo scroll della pagina
-            document.body.style.overflow = 'hidden';
-        }
+        <script>
+            // --- CONFIGURAZIONE GALLERIA ---
+            // Aggiungi qui le altre immagini del prodotto
+            const gallery = [
+                { src: "img/Fluidi_copertina.png", title: "Recupero fluidi" },
+                { src: "img/Recupero fluidi_1.png", title: "Recupero fluidi" },
+                //{ src: "img/Fluidi_3.png", title: "Recupero fluidi - Kit Completo" }
+            ];
 
-        // Funzione per chiudere il lightbox
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+            let currentIndex = 0;
+            let touchStartX = 0;
+            let touchEndX = 0;
 
-        // Chiudi il lightbox con il tasto ESC
-        document.onkeydown = function(evt) {
-            evt = evt || window.event;
-            if (evt.key === "Escape") {
-                closeLightbox();
+            // Crea i puntini di navigazione in base a quante immagini ci sono
+            function createDots() {
+                const container = document.getElementById('dots-container');
+                container.innerHTML = "";
+                gallery.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    dot.onclick = (e) => { 
+                        e.stopPropagation(); 
+                        openLightbox(index); 
+                    };
+                    container.appendChild(dot);
+                });
             }
-        };
-    </script>
-</body>
+
+            function openLightbox(index) {
+                currentIndex = index;
+                document.getElementById('lightbox').style.display = 'block';
+                updateLightboxContent();
+                document.body.style.overflow = 'hidden'; // Blocca scroll
+            }
+
+            function closeLightbox() {
+                document.getElementById('lightbox').style.display = 'none';
+                document.body.style.overflow = 'auto'; // Riabilita scroll
+            }
+
+            function changeImage(step, event) {
+                if (event) event.stopPropagation();
+                currentIndex += step;
+                if (currentIndex >= gallery.length) currentIndex = 0;
+                if (currentIndex < 0) currentIndex = gallery.length - 1;
+                updateLightboxContent();
+            }
+
+            function updateLightboxContent() {
+                const img = document.getElementById('lightbox-img');
+                const caption = document.getElementById('lightbox-caption');
+                const dots = document.querySelectorAll('.dot');
+                
+                img.src = gallery[currentIndex].src;
+                caption.textContent = gallery[currentIndex].title;
+                
+                // Aggiorna lo stato dei puntini
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+
+                // Nascondi le frecce se c'è una sola immagine
+                const arrows = document.querySelectorAll('.nav-arrow');
+                arrows.forEach(arrow => {
+                    arrow.style.display = gallery.length > 1 ? 'block' : 'none';
+                });
+            }
+
+            // GESTIONE SWIPE (Touch)
+            const lightboxEl = document.getElementById('lightbox');
+            lightboxEl.addEventListener('touchstart', e => { 
+                touchStartX = e.changedTouches[0].screenX; 
+            }, false);
+            
+            lightboxEl.addEventListener('touchend', e => { 
+                touchEndX = e.changedTouches[0].screenX; 
+                handleGesture(); 
+            }, false);
+
+            function handleGesture() {
+                const threshold = 50;
+                if (touchEndX < touchStartX - threshold) changeImage(1);
+                if (touchEndX > touchStartX + threshold) changeImage(-1);
+            }
+
+            // GESTIONE TASTIERA
+            document.onkeydown = function(evt) {
+                const isVisible = document.getElementById('lightbox').style.display === 'block';
+                if (isVisible) {
+                    if (evt.key === "Escape") closeLightbox();
+                    if (evt.key === "ArrowRight") changeImage(1);
+                    if (evt.key === "ArrowLeft") changeImage(-1);
+                }
+            };
+
+            // Inizializza i puntini al caricamento
+            window.onload = createDots;
+        </script>
+    </body>
 </html>
-
-
-
-
-

@@ -113,15 +113,42 @@
             cursor: pointer; padding: 15px; transition: 0.3s;
             background: rgba(0,0,0,0.1); border-radius: 5px; z-index: 10000;
         }
-        .nav-arrow:hover { background: rgba(255,255,255,0.2); }
+        .nav-arrow:hover { 
+            background: rgba(255,255,255,0.2); 
+        }
         .prev { left: 10px; }
         .next { right: 10px; }
 
-        .dots-container { margin-top: 15px; display: flex; justify-content: center; gap: 8px; }
-        .dot { height: 8px; width: 8px; background-color: rgba(255,255,255,0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
-        .dot.active { background-color: white; transform: scale(1.2); }
+        .dots-container { 
+            margin-top: 15px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 8px; 
+        }
+        .dot { 
+            height: 8px; 
+            width: 8px; 
+            background-color: rgba(255,255,255,0.3); 
+            border-radius: 50%; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        .dot.active { 
+            background-color: white; 
+            transform: scale(1.2); 
+        }
 
-        .lightbox-caption { color: white; margin-top: 15px; font-size: 16px; opacity: 0.9; }
+        .lightbox-caption { 
+            color: white; 
+            margin-top: 15px; 
+            font-size: 16px; 
+            opacity: 0.9; 
+        }
+
+        @media (max-width: 768px) {
+            .product-container { flex-direction: column; }
+            .product-image { position: relative; top: 0; }
+        }
     </style>
 
 </head>
